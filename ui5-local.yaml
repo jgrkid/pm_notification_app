@@ -34,6 +34,7 @@ server:
             url: http://fpe8d:443
             client: '901'
             destination: BAS_E8D_SSO
+            authenticationType: PrincipalPropagation
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:

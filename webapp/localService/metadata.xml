@@ -92,16 +92,21 @@
                 <Property Name="Assigned" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Partner" sap:value-list="standard"/>
                 <NavigationProperty Name="to_assigned" Relationship="ZPM_MAINTENANCE_SRV.assoc_9C9165E8E0131F2F3D97F34848D240B2" FromRole="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2" ToRole="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
                 <NavigationProperty Name="to_dmg_pattern" Relationship="ZPM_MAINTENANCE_SRV.assoc_40F5DE3358142A9A7286072C2B5D8B6C" FromRole="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C" ToRole="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
-                <NavigationProperty Name="to_techobj" Relationship="ZPM_MAINTENANCE_SRV.assoc_98EF3FDD9461EDD06019376E9DA86B05" FromRole="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05" ToRole="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
+                <NavigationProperty Name="to_equipment" Relationship="ZPM_MAINTENANCE_SRV.assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" FromRole="FromRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" ToRole="ToRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+                <NavigationProperty Name="to_funcloc" Relationship="ZPM_MAINTENANCE_SRV.assoc_9F3326686A99DD9896ECAE2283EE6519" FromRole="FromRole_assoc_9F3326686A99DD9896ECAE2283EE6519" ToRole="ToRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
                 <NavigationProperty Name="to_user" Relationship="ZPM_MAINTENANCE_SRV.assoc_9DC529D6D006B8FE6D3C6C19B39E778E" FromRole="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E" ToRole="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
             </EntityType>
             <Association Name="assoc_40F5DE3358142A9A7286072C2B5D8B6C" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
                 <End Type="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_VH_DMG_PATTERNType" Multiplicity="0..1" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
             </Association>
-            <Association Name="assoc_98EF3FDD9461EDD06019376E9DA86B05" sap:content-version="1">
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" Multiplicity="1" Role="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
+            <Association Name="assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" sap:content-version="1">
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" Multiplicity="1" Role="ToRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+            </Association>
+            <Association Name="assoc_9F3326686A99DD9896ECAE2283EE6519" sap:content-version="1">
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" Multiplicity="1" Role="ToRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
             </Association>
             <Association Name="assoc_9DC529D6D006B8FE6D3C6C19B39E778E" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
@@ -117,17 +122,21 @@
                 <EntitySet Name="ZD4P_C_PM_VH_TECH_OBJ" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_VH_USER" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_USERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_NOTIF" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_9F3326686A99DD9896ECAE2283EE6519" Association="ZPM_MAINTENANCE_SRV.assoc_9F3326686A99DD9896ECAE2283EE6519" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
+                    <End EntitySet="ZD4P_C_PM_VH_TECH_OBJ" Role="ToRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
+                </AssociationSet>
                 <AssociationSet Name="assoc_9C9165E8E0131F2F3D97F34848D240B2" Association="ZPM_MAINTENANCE_SRV.assoc_9C9165E8E0131F2F3D97F34848D240B2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
                     <End EntitySet="ZD4P_C_PM_VH_ASSIGN" Role="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
                 </AssociationSet>
+                <AssociationSet Name="assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" Association="ZPM_MAINTENANCE_SRV.assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+                    <End EntitySet="ZD4P_C_PM_VH_TECH_OBJ" Role="ToRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+                </AssociationSet>
                 <AssociationSet Name="assoc_9DC529D6D006B8FE6D3C6C19B39E778E" Association="ZPM_MAINTENANCE_SRV.assoc_9DC529D6D006B8FE6D3C6C19B39E778E" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
                     <End EntitySet="ZD4P_C_PM_VH_USER" Role="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
-                </AssociationSet>
-                <AssociationSet Name="assoc_98EF3FDD9461EDD06019376E9DA86B05" Association="ZPM_MAINTENANCE_SRV.assoc_98EF3FDD9461EDD06019376E9DA86B05" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
-                    <End EntitySet="ZD4P_C_PM_VH_TECH_OBJ" Role="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
                 </AssociationSet>
                 <AssociationSet Name="assoc_40F5DE3358142A9A7286072C2B5D8B6C" Association="ZPM_MAINTENANCE_SRV.assoc_40F5DE3358142A9A7286072C2B5D8B6C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
@@ -146,8 +155,7 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="Equipment"/>
                                     <PropertyValue Property="ValueListProperty" String="Equipment"/>
                                 </Record>
-                                <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FunctionalLocation"/>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="FunctionalLocation"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
@@ -239,12 +247,11 @@
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Equipment"/>
-                                    <PropertyValue Property="ValueListProperty" String="Equipment"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterInOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="FunctionalLocation"/>
                                     <PropertyValue Property="ValueListProperty" String="FunctionalLocation"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Equipment"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="CreatedAt"/>
