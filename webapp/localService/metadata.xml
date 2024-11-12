@@ -9,12 +9,12 @@
                 <Key>
                     <PropertyRef Name="CatalogType"/>
                     <PropertyRef Name="CodeGroup"/>
-                    <PropertyRef Name="Code"/>
+                    <PropertyRef Name="DamageKey"/>
                 </Key>
                 <Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Catalog"/>
                 <Property Name="CodeGroup" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase" sap:label="Code group"/>
-                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Code"/>
-                <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:label="Short text for code"/>
+                <Property Name="DamageKey" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="DamageDesc" sap:label="Code"/>
+                <Property Name="DamageDesc" Type="Edm.String" MaxLength="40" sap:label="Short text for code"/>
             </EntityType>
             <EntityType Name="ZD4P_C_PM_VH_ASSIGNType" sap:content-version="1">
                 <Key>
@@ -81,7 +81,7 @@
                 <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:label="Description"/>
                 <Property Name="Description" Type="Edm.String" MaxLength="72" sap:label="Text Line"/>
                 <Property Name="CodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Problem"/>
-                <Property Name="Code" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Damage Code"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Damage Code" sap:value-list="standard"/>
                 <Property Name="Damage" Type="Edm.String" MaxLength="80" sap:label="Damage Text"/>
                 <Property Name="Priority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Priority"/>
                 <Property Name="LocationTechnicalObject" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location"/>
@@ -155,6 +155,10 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="Equipment"/>
                                     <PropertyValue Property="ValueListProperty" String="Equipment"/>
                                 </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MaintenancePlant"/>
+                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlant"/>
+                                </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="FunctionalLocation"/>
                                 </Record>
@@ -230,9 +234,6 @@
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="LocationTechnicalObject"/>
                                 </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlant"/>
-                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -249,6 +250,10 @@
                                 <Record Type="Common.ValueListParameterInOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="FunctionalLocation"/>
                                     <PropertyValue Property="ValueListProperty" String="FunctionalLocation"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MaintenancePlant"/>
+                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlant"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="Equipment"/>
@@ -325,8 +330,33 @@
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="LocationTechnicalObject"/>
                                 </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Wertehilfe Schadensbild (Dropdown)"/>
+                        <PropertyValue Property="CollectionPath" String="Z4DP_C_PM_VH_DMG_PATTERN"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CodeGroup"/>
+                                    <PropertyValue Property="ValueListProperty" String="CodeGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Code"/>
+                                    <PropertyValue Property="ValueListProperty" String="DamageKey"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Damage"/>
+                                    <PropertyValue Property="ValueListProperty" String="DamageDesc"/>
+                                </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlant"/>
+                                    <PropertyValue Property="ValueListProperty" String="CatalogType"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>

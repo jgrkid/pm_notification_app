@@ -15,7 +15,6 @@ sap.ui.define([
 
             onRouteMatched: function (oEvent) {
 
-                // create an entry in the Products collection with the specified properties and values as initial data
                 var oModel = this.getView().getModel()
                 var that = this
                 oModel.metadataLoaded(true).then(
@@ -23,7 +22,7 @@ sap.ui.define([
                         var oContext = oModel.createEntry("/ZD4P_C_PM_NOTIF", {
                             properties: {}
                         });
-                        // bind a form against the transient context for the newly created entity
+                        
                         that.getView().setBindingContext(oContext);
                     })
             }

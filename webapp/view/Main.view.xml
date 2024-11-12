@@ -14,28 +14,38 @@
     <Page id="page" showHeader="false">
 
         	<smartForm:SmartForm id="smartForm"
-			    app:defaultDropDownDisplayBehaviour="idAndDescription"
-			    editTogglable="true" editToggled="handleEditToggled"
+			    editTogglable="false"
 			    validationMode="Async"
                 editable="true"
                 title="{i18n>grouptitle}">
-                
+			    <smartForm:layout>
+				    <smartForm:ColumnLayout id="_IDLayout" columnsM="1" columnsL="1" columnsXL="1"/>
+			    </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup"  >
                         <smartForm:GroupElement id="_IDEltechObEQUI" label="technisches Objekt (EQUI)">
                             <smartField:SmartField id="_IDEqui"  value="{Equipment}" />
-                            <smartField:SmartField id="_IDGenSmartField1" textLabel="oida" value="fsd"/>
-                            <smartField:SmartField id="_IDGenSmartField167" textLabel="oida" />
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEltechObFUNCLOC" label="technisches Objekt (FUNLOC)">
-                            <smartField:SmartField id="_IDFuncloc" textLabel="technisches Objekt (FUNLOC)" value="{FunctionalLocation}" />
+                            <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder=""/>
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDGenGroupElement3" label="Beschreibung">
-                            
+                        <smartForm:GroupElement id="_IDEShortText" label="Beschreibung">
+                            <smartField:SmartField id="_IDShortText" value="{ShortText}" />
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDGenGroupElement4" tooltip="sdfas" label="OIDA" >
-                            <smartField:SmartField id="_IDGenSmartField2" value="was">
+                        <smartForm:GroupElement id="_IDEDesc" label="Langtext">
+                            <smartField:SmartField id="_IDDesc" value="{Description}" app:multiLineSettings="{cols: 100, rows: 4}"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDGenGroupElement4">
+                            <smartField:SmartField id="_IDGenSmartField2" textLabel="Schadensbild" value="{Code}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDGenConfiguration" controlType="dropDownList"
+                                        displayBehaviour="descriptionAndId"  />
+                                </smartField:configuration>
+                            </smartField:SmartField>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDGenGroupElement5" >
+                            <smartField:SmartField id="_IDGenSmartField3" textLabel="Auswirkung" value="{Priority}">
+                                <smartField:configuration>
+                                    <smartField:Configuration id="_IDGenConfiguration1" controlType="dropDownList"
                                         displayBehaviour="descriptionAndId" />
                                 </smartField:configuration>
                             </smartField:SmartField>
