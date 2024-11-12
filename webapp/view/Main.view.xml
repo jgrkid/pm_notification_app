@@ -11,7 +11,7 @@
     controllerName="pmnotificationapp.controller.Main"
     height="100%"
     displayBlock="true">
-    <Page id="page" showHeader="false">
+    <Page id="page" showHeader="false" showFooter="true">
 
         	<smartForm:SmartForm id="smartForm"
 			    editTogglable="false"
@@ -23,35 +23,63 @@
 			    </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup"  >
                         <smartForm:GroupElement id="_IDEltechObEQUI" label="technisches Objekt (EQUI)">
-                            <smartField:SmartField id="_IDEqui"  value="{Equipment}" />
+                            <smartField:SmartField id="_IDEqui"  value="{Equipment}" placeholder="Wählen Sie das Equipment oder den technischen Platz aus"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEltechObFUNCLOC" label="technisches Objekt (FUNLOC)">
-                            <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder=""/>
+                            <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder="Wählen Sie das Equipment oder den technischen Platz aus"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEShortText" label="Beschreibung">
-                            <smartField:SmartField id="_IDShortText" value="{ShortText}" />
+                            <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="Beschreiben Sie kurz die Störung"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDesc" label="Langtext">
-                            <smartField:SmartField id="_IDDesc" value="{Description}" app:multiLineSettings="{cols: 100, rows: 4}"/>
+                            <smartField:SmartField id="_IDDesc" value="{Description}" wrapping="true" app:multiLineSettings="{rows: 5}" width="100%"
+                                                    placeholder="Erfassen Sie eine detaillierte Beschreibung des Problems"/>
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDGenGroupElement4">
-                            <smartField:SmartField id="_IDGenSmartField2" textLabel="Schadensbild" value="{Code}">
+                        <smartForm:GroupElement id="_IDEDamage">
+                            <smartField:SmartField id="_IDDamage" textLabel="Schadensbild" value="{Code}">
                                 <smartField:configuration>
-                                    <smartField:Configuration id="_IDGenConfiguration" controlType="dropDownList"
+                                    <smartField:Configuration id="_IDDamageConfig" controlType="dropDownList"
                                         displayBehaviour="descriptionAndId"  />
                                 </smartField:configuration>
                             </smartField:SmartField>
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDGenGroupElement5" >
-                            <smartField:SmartField id="_IDGenSmartField3" textLabel="Auswirkung" value="{Priority}">
+                        <smartForm:GroupElement id="_IDEPriority" >
+                            <smartField:SmartField id="_IDPriority" textLabel="Auswirkung" value="{Priority}">
                                 <smartField:configuration>
-                                    <smartField:Configuration id="_IDGenConfiguration1" controlType="dropDownList"
+                                    <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
                                         displayBehaviour="descriptionAndId" />
                                 </smartField:configuration>
                             </smartField:SmartField>
                         </smartForm:GroupElement>
-                    </smartForm:Group>
+                        <smartForm:GroupElement id="_IDELocTechOb" label="Aktueller Standort">
+                            <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="Geben Sie den aktuellen Standort des defekten technischen Objekts an"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true">
+                            <smartField:SmartField id="_IDDeclareDate" textLabel="Gemeldet am" value="{DeclarationDate}">
+                                <smartField:configuration>
+                                    <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
+                                </smartField:configuration>
+                            </smartField:SmartField>
+                            <smartField:SmartField id="_IDDeclareTime" textLabel="Gemeldet am" value="{DeclarationTime}">
+                                <smartField:configuration>
+                                    <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
+                                </smartField:configuration>
+                                <smartField:customData>
+                                    <core:CustomData />
+                                </smartField:customData>
+                            </smartField:SmartField>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEDeclarant" label="Meldender">
+                            <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEAssignedTo" label="Zuordnen zu">
+                            <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
+                        </smartForm:GroupElement>
+                    </smartForm:Group>      
 		</smartForm:SmartForm>
+
+       
+
 
     </Page>
 </mvc:View>

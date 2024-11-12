@@ -14,7 +14,6 @@ sap.ui.define([
 
 
             onRouteMatched: function (oEvent) {
-
                 var oModel = this.getView().getModel()
                 var that = this
                 oModel.metadataLoaded(true).then(
