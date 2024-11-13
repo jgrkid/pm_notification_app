@@ -7,20 +7,27 @@
     xmlns:upload="sap.m.upload"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     controllerName="pmnotificationapp.controller.Main"
     height="100%"
     displayBlock="true">
-    <Page id="page" showHeader="false" showFooter="true">
 
-        	<smartForm:SmartForm id="smartForm"
-			    editTogglable="false"
-			    validationMode="Async"
-                editable="true"
-                title="{i18n>grouptitle}">
-			    <smartForm:layout>
-				    <smartForm:ColumnLayout id="_IDLayout" columnsM="1" columnsL="1" columnsXL="1"/>
-			    </smartForm:layout>
+    <Page id="page" class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer" 
+          showHeader="false" floatingFooter="true" >
+
+        <content>
+
+            <!-- SmartForm for Malfunction Report -->
+            <FlexBox id="_IDFBSmartForm" alignItems="Center">
+                <smartForm:SmartForm id="smartForm"
+                                     editTogglable="false"
+                                     validationMode="Async"
+                                     editable="true"
+                                     title="{i18n>grouptitle}">
+                    <smartForm:layout>
+                        <smartForm:ColumnLayout id="_IDLayout" columnsM="1" columnsL="1" columnsXL="1"/>
+                    </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup"  >
                         <smartForm:GroupElement id="_IDEltechObEQUI" label="technisches Objekt (EQUI)">
                             <smartField:SmartField id="_IDEqui"  value="{Equipment}" placeholder="Wählen Sie das Equipment oder den technischen Platz aus"/>
@@ -32,54 +39,129 @@
                             <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="Beschreiben Sie kurz die Störung"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDesc" label="Langtext">
-                            <smartField:SmartField id="_IDDesc" value="{Description}" wrapping="true" app:multiLineSettings="{rows: 5}" width="100%"
-                                                    placeholder="Erfassen Sie eine detaillierte Beschreibung des Problems"/>
+                            <smartField:SmartField id="_IDDesc" value="{Description}" wrapping="true" app:multiLineSettings="{rows: 3}" width="100%"
+                                                   placeholder="Erfassen Sie eine detaillierte Beschreibung des Problems"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDamage">
                             <smartField:SmartField id="_IDDamage" textLabel="Schadensbild" value="{Code}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDamageConfig" controlType="dropDownList"
-                                        displayBehaviour="descriptionAndId"  />
-                                </smartField:configuration>
-                            </smartField:SmartField>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEPriority" >
-                            <smartField:SmartField id="_IDPriority" textLabel="Auswirkung" value="{Priority}">
-                                <smartField:configuration>
-                                    <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
-                                        displayBehaviour="descriptionAndId" />
-                                </smartField:configuration>
-                            </smartField:SmartField>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDELocTechOb" label="Aktueller Standort">
-                            <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="Geben Sie den aktuellen Standort des defekten technischen Objekts an"/>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true">
-                            <smartField:SmartField id="_IDDeclareDate" textLabel="Gemeldet am" value="{DeclarationDate}">
-                                <smartField:configuration>
-                                    <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
-                                </smartField:configuration>
-                            </smartField:SmartField>
-                            <smartField:SmartField id="_IDDeclareTime" textLabel="Gemeldet am" value="{DeclarationTime}">
-                                <smartField:configuration>
-                                    <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
-                                </smartField:configuration>
-                                <smartField:customData>
-                                    <core:CustomData />
-                                </smartField:customData>
-                            </smartField:SmartField>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEDeclarant" label="Meldender">
-                            <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEAssignedTo" label="Zuordnen zu">
-                            <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
+                                                              displayBehaviour="descriptionAndId"  />
+                                    </smartField:configuration>
+                                </smartField:SmartField>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="_IDEPriority" >
+                                <smartField:SmartField id="_IDPriority" textLabel="Auswirkung" value="{Priority}">
+                                    <smartField:configuration>
+                                        <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
+                                                                  displayBehaviour="descriptionAndId" />
+                                    </smartField:configuration>
+                                </smartField:SmartField>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="_IDELocTechOb" label="Aktueller Standort">
+                                <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="Geben Sie den aktuellen Standort des defekten technischen Objekts an"/>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true">
+                                <smartField:SmartField id="_IDDeclareDate" textLabel="Gemeldet am" value="{DeclarationDate}">
+                                    <smartField:configuration>
+                                        <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
+                                    </smartField:configuration>
+                                </smartField:SmartField>
+                                <smartField:SmartField id="_IDDeclareTime" textLabel="Gemeldet am" value="{DeclarationTime}">
+                                    <smartField:configuration>
+                                        <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
+                                    </smartField:configuration>
+                                </smartField:SmartField>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="_IDEDeclarant" label="Meldender">
+                                <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="_IDEAssignedTo" label="Zuordnen zu">
+                                <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
                         </smartForm:GroupElement>
                     </smartForm:Group>      
-		</smartForm:SmartForm>
+                </smartForm:SmartForm>
+            </FlexBox>
 
-       
+            <!-- empty line -->
+            <FlexBox id="_IDSpacer"><Label id="_IDSpacerLabel"></Label></FlexBox> 
+        
+            <!-- Attachments -->
+            <Panel id="_IDAttachments">
+                <upload:UploadSet
+                        id="UploadSet"
+                        instantUpload="true"
+                        showIcons="true"
+                        uploadEnabled="true"
+                        terminationEnabled="true"
+                        fileTypes="txt,doc,png"
+                        maxFileNameLength="30"
+                        maxFileSize="200"
+                        mediaTypes="text/plain,application/msword,image/jpeg,image/png,application/pdf,image/jpg"
+                        uploadUrl="../../../../upload"
+                        mode="MultiSelect"
+                        sameFilenameAllowed="false"
+                        items="{path: 'items', templateShareable: false}"
+                        afterItemRemoved="onAfterItemRemoved" 
+                        uploadCompleted="onUploadCompleted"
+                        visible="true"
+                        >
+                    <upload:toolbar>
+                        <OverflowToolbar id="_IDOVT" class="sapFDynamicPageAlignContent"> 
+                            <!-- <Title id="attachmentTitle" level="Auto"/> -->
+				            <Title id="attachmentTitle" level="Auto" text="Anlagen"/>
+                            <ToolbarSpacer id="_IDToolbarSpacer"/>
+					        <Button
+							    id="downloadSelectedButton"
+							    icon="sap-icon://download"
+							    press="onDownloadSelectedButton"/>
+                            <Button
+							    id="deleteSelectedButton"
+							    icon="sap-icon://delete"
+							    press="onDeleteSelectedButton"/>
+                            <Button
+                                id="uploadSelectedButton"
+							    icon="sap-icon://upload"
+							    press="onUploadSelectedButton"/>
+                        </OverflowToolbar>
+                    </upload:toolbar>
+                    <upload:items>
+                        <upload:UploadSetItem id="_IDGenUploadSetItem1"
+                                fileName="{fileName}"
+                                mediaType="{mediaType}"
+                                url="{url}"
+                                thumbnailUrl="{thumbnailUrl}"
+                                markers="{path: 'markers', templateShareable: false}"
+                                statuses="{path: 'statuses', templateShareable: false}"
+                                uploadState="{uploadState}">
+                            <upload:markers>
+                                <ObjectMarker id="_IDGenObjectMarker"
+                                        type="{type}"
+                                        visibility="{visibility}"/>
+                            </upload:markers>
+                            <upload:statuses>
+                                <ObjectStatus id="_IDGenObjectStatus"
+                                        title="{title}"
+                                        text="{text}"
+                                        state="{state}"
+                                        icon="{icon}"
+                                        active="{active}"/>
+                            </upload:statuses>
+                        </upload:UploadSetItem>
+                    </upload:items>
+                </upload:UploadSet>
+            </Panel>
 
+        </content>
+        
+        <!-- Floating footer -->
+        <footer>
+            <OverflowToolbar id="otbFooter" design="Solid">
+            	<ToolbarSpacer id="_IDGenToolbarSpacer" />
+                <Button id="_IDFSave" type="Emphasized" text="Sichern"/>
+                <Button id="_IDFCanc" type="Default" text="Abbrechen"/>
+            </OverflowToolbar>
+        </footer>
 
     </Page>
 </mvc:View>
