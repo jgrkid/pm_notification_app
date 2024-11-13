@@ -29,18 +29,18 @@
                         <smartForm:ColumnLayout id="_IDLayout" columnsM="1" columnsL="1" columnsXL="1"/>
                     </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup"  >
-                        <smartForm:GroupElement id="_IDEltechObEQUI" label="technisches Objekt (EQUI)">
-                            <smartField:SmartField id="_IDEqui"  value="{Equipment}" placeholder="Wählen Sie das Equipment oder den technischen Platz aus"/>
+                        <smartForm:GroupElement id="_IDEltechObEQUI" label="{i18n>labelEqui}">
+                            <smartField:SmartField id="_IDEqui"  value="{Equipment}" placeholder="{i18n>phTObj}"/>
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEltechObFUNCLOC" label="technisches Objekt (FUNLOC)">
-                            <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder="Wählen Sie das Equipment oder den technischen Platz aus"/>
+                        <smartForm:GroupElement id="_IDEltechObFUNCLOC" label="{i18n>labelFuncloc}">
+                            <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder="{i18n>phTObj}"/>
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEShortText" label="Beschreibung">
-                            <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="Beschreiben Sie kurz die Störung"/>
+                        <smartForm:GroupElement id="_IDEShortText" label="{i18n>labelShortT}">
+                            <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="{i18n>phShortT}"/>
                         </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEDesc" label="Langtext">
+                        <smartForm:GroupElement id="_IDEDesc" label="{i18n>labelDesc}">
                             <smartField:SmartField id="_IDDesc" value="{Description}" wrapping="true" app:multiLineSettings="{rows: 3}" width="100%"
-                                                   placeholder="Erfassen Sie eine detaillierte Beschreibung des Problems"/>
+                                                   placeholder="{i18n>phDesc}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDamage">
                             <smartField:SmartField id="_IDDamage" textLabel="Schadensbild" value="{Code}">
