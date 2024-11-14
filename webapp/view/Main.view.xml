@@ -36,14 +36,14 @@
                             <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder="{i18n>phTObj}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEShortText" label="{i18n>labelShortT}">
-                            <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="{i18n>phShortT}"/>
+                            <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="{i18n>phShortT}" mandatory="true"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDesc" label="{i18n>labelDesc}">
                             <smartField:SmartField id="_IDDesc" value="{Description}" wrapping="true" app:multiLineSettings="{rows: 3}" width="100%"
                                                    placeholder="{i18n>phDesc}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDamage">
-                            <smartField:SmartField id="_IDDamage" textLabel="Schadensbild" value="{Code}">
+                            <smartField:SmartField id="_IDDamage" textLabel="{i18n>labelDamage}" value="{Code}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDamageConfig" controlType="dropDownList"
                                                               displayBehaviour="descriptionAndId"  />
@@ -51,32 +51,32 @@
                                 </smartField:SmartField>
                             </smartForm:GroupElement>
                             <smartForm:GroupElement id="_IDEPriority" >
-                                <smartField:SmartField id="_IDPriority" textLabel="Auswirkung" value="{Priority}">
+                                <smartField:SmartField id="_IDPriority" textLabel="{i18n>labelPrio}" value="{Priority}">
                                     <smartField:configuration>
                                         <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
                                                                   displayBehaviour="descriptionAndId" />
                                     </smartField:configuration>
                                 </smartField:SmartField>
                             </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDELocTechOb" label="Aktueller Standort">
-                                <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="Geben Sie den aktuellen Standort des defekten technischen Objekts an"/>
+                            <smartForm:GroupElement id="_IDELocTechOb" label="{i18n>labelLocTechOb}">
+                                <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="{i18n>phTechOb}"/>
                             </smartForm:GroupElement>
                             <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true">
-                                <smartField:SmartField id="_IDDeclareDate" textLabel="Gemeldet am" value="{DeclarationDate}">
+                                <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{DeclarationDate}">
                                     <smartField:configuration>
                                         <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
                                     </smartField:configuration>
                                 </smartField:SmartField>
-                                <smartField:SmartField id="_IDDeclareTime" textLabel="Gemeldet am" value="{DeclarationTime}">
+                                <smartField:SmartField id="_IDDeclareTime" value="{DeclarationTime}">
                                     <smartField:configuration>
                                         <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
                                     </smartField:configuration>
                                 </smartField:SmartField>
                             </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEDeclarant" label="Meldender">
+                            <smartForm:GroupElement id="_IDEDeclarant" label="{i18n>labelDeclarant}">
                                 <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
                             </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEAssignedTo" label="Zuordnen zu">
+                            <smartForm:GroupElement id="_IDEAssignedTo" label="{i18n>labelAssignedTo}">
                                 <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
                         </smartForm:GroupElement>
                     </smartForm:Group>      
@@ -104,12 +104,11 @@
                         items="{path: 'items', templateShareable: false}"
                         afterItemRemoved="onAfterItemRemoved" 
                         uploadCompleted="onUploadCompleted"
-                        visible="true"
-                        >
+                        visible="true">
                     <upload:toolbar>
                         <OverflowToolbar id="_IDOVT" class="sapFDynamicPageAlignContent"> 
                             <!-- <Title id="attachmentTitle" level="Auto"/> -->
-				            <Title id="attachmentTitle" level="Auto" text="Anlagen"/>
+				            <Title id="attachmentTitle" level="Auto" text="{i18n>labelAttachment}"/>
                             <ToolbarSpacer id="_IDToolbarSpacer"/>
 					        <Button
 							    id="downloadSelectedButton"
