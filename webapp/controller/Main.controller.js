@@ -1,13 +1,14 @@
 sap.ui.define([
-	"sap/m/library",
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/Item",
-	"sap/ui/model/json/JSONModel",
-	"sap/m/upload/Uploader"
+    "sap/m/library",
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/Item",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/upload/Uploader",
+    "sap/ui/model/odata/type/DateTimeWithTimezone"
 ],
     function (MobileLibrary, Controller, Item, JSONModel, Uploader) {
         "use strict";
-        
+
         return Controller.extend("pmnotificationapp.controller.Main", {
             onInit: function () {
 
@@ -18,27 +19,50 @@ sap.ui.define([
 
 
                 // //Init Uploader
-                 var oUploadSet = this.byId("UploadSet")
+                var oUploadSet = this.byId("UploadSet")
 
-			    // Modify "add file" button
+                // Modify "add file" button
                 oUploadSet.getDefaultFileUploader().setButtonOnly(false)
-			    oUploadSet.getDefaultFileUploader().setTooltip("")
-			    oUploadSet.getDefaultFileUploader().setIconOnly(true)
-			    oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
+                oUploadSet.getDefaultFileUploader().setTooltip("")
+                oUploadSet.getDefaultFileUploader().setIconOnly(true)
+                oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
 
             },
 
 
-            
+
             onRouteMatched: function (oEvent) {
                 var oModel = this.getView().getModel()
                 var that = this
+
+
+                // Create current date object
+                const now = new Date();
+                // Get current UTC time in milliseconds
+                const utcMs = Date.UTC(
+                    now.getUTCFullYear(),
+                    now.getUTCMonth(),
+                    now.getUTCDate(),
+                    now.getUTCHours(),
+                    now.getUTCMinutes(),
+                    now.getUTCSeconds(),
+                    now.getUTCMilliseconds()
+                );
+                // Calculate timezone offset for Germany (Winter = UTC+1, Summer = UTC+2)
+                const tzOffsetMs = now.getTimezoneOffset() * 60 * 1000;
+                const deMs = utcMs - tzOffsetMs;
+
+                var todaydate = new Date().toISOString().substring(0, 10)
+                var todayms = new Date(todaydate).getTime()
+                var today = deMs - todayms
+
+                //wait for metadata
                 oModel.metadataLoaded(true).then(
                     function () {
                         var oContext = oModel.createEntry("/ZD4P_C_PM_NOTIF", {
-                            properties: {}
+                            properties: { DeclarationDate: new Date(), DeclarationTime: { "ms": today, "__edmType": "Edm.Time" }, Declarant: sap.ushell.Container.getService("UserInfo").getId() }
                         });
-                        
+
                         that.getView().setBindingContext(oContext);
                     })
             },
@@ -54,7 +78,7 @@ sap.ui.define([
             // },
             // onDownloadSelectedButton: function () {
             //     var oUploadSet = this.byId("UploadSet");
-    
+
             //     oUploadSet.getItems().forEach(function (oItem) {
             //         if (oItem.getListItem().getSelected()) {
             //             oItem.download(true);

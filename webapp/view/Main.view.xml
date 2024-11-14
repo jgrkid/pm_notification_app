@@ -26,9 +26,10 @@
                                      editable="true"
                                      title="{i18n>grouptitle}">
                     <smartForm:layout>
-                        <smartForm:ColumnLayout id="_IDLayout" columnsM="1" columnsL="1" columnsXL="1"/>
+                        <smartForm:ColumnLayout id="_IDLayout"  labelCellsLarge="3" emptyCellsLarge="1"
+                                                columnsM="1" columnsL="1" columnsXL="1" />
                     </smartForm:layout>
-                    <smartForm:Group id="_IDGenGroup"  >
+                    <smartForm:Group id="_IDGenGroup" >
                         <smartForm:GroupElement id="_IDEltechObEQUI" label="{i18n>labelEqui}">
                             <smartField:SmartField id="_IDEqui"  value="{Equipment}" placeholder="{i18n>phTObj}"/>
                         </smartForm:GroupElement>
@@ -46,7 +47,7 @@
                             <smartField:SmartField id="_IDDamage" textLabel="{i18n>labelDamage}" value="{Code}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDamageConfig" controlType="dropDownList"
-                                                              displayBehaviour="descriptionAndId"  />
+                                                              displayBehaviour="descriptionAndId"/>
                                     </smartField:configuration>
                                 </smartField:SmartField>
                             </smartForm:GroupElement>
@@ -61,7 +62,7 @@
                             <smartForm:GroupElement id="_IDELocTechOb" label="{i18n>labelLocTechOb}">
                                 <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="{i18n>phTechOb}"/>
                             </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true">
+                            <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true" elementForLabel="0">
                                 <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{DeclarationDate}">
                                     <smartField:configuration>
                                         <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
@@ -94,7 +95,6 @@
                         showIcons="true"
                         uploadEnabled="true"
                         terminationEnabled="true"
-                        fileTypes="txt,doc,png"
                         maxFileNameLength="30"
                         maxFileSize="200"
                         mediaTypes="text/plain,application/msword,image/jpeg,image/png,application/pdf,image/jpg"
@@ -114,10 +114,6 @@
 							    id="downloadSelectedButton"
 							    icon="sap-icon://download"
 							    press="onDownloadSelectedButton"/>
-                            <Button
-							    id="deleteSelectedButton"
-							    icon="sap-icon://delete"
-							    press="onDeleteSelectedButton"/>
                             <Button
                                 id="uploadSelectedButton"
 							    icon="sap-icon://upload"
