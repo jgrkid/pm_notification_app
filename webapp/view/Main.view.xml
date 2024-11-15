@@ -8,6 +8,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.f"
+    xmlns:ndc="sap.ndc"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     controllerName="pmnotificationapp.controller.Main"
     height="100%"
@@ -24,7 +25,21 @@
                                      editTogglable="false"
                                      validationMode="Async"
                                      editable="true"
-                                     title="{i18n>grouptitle}">
+                                     title="{i18n>grouptitle}"
+                                     >
+                    	<smartForm:customToolbar>
+		                    <Toolbar id="_IDGenToolbar" height="3rem">
+			                    <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+			                    	<ndc:BarcodeScannerButton
+			                            id="sampleBarcodeScannerButton"
+			                            scanSuccess="onScanSuccess"
+			                            scanFail="onScanError"
+			                            inputLiveUpdate="onScanLiveupdate"
+			                            dialogTitle="Barcode"
+                                        width="5%"
+		                            />
+		                    </Toolbar>
+	                    </smartForm:customToolbar>
                     <smartForm:layout>
                         <smartForm:ColumnLayout id="_IDLayout"  labelCellsLarge="3" emptyCellsLarge="1"
                                                 columnsM="1" columnsL="1" columnsXL="1" />

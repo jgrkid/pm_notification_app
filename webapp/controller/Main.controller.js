@@ -4,10 +4,15 @@ sap.ui.define([
     "sap/ui/core/Item",
     "sap/ui/model/json/JSONModel",
     "sap/m/upload/Uploader",
+    "sap/ui/core/Element",
     "sap/ui/model/odata/type/DateTimeWithTimezone"
 ],
-    function (MobileLibrary, Controller, Item, JSONModel, Uploader) {
+    function (MobileLibrary, Controller, Item, JSONModel, Uploader, Element) {
         "use strict";
+
+        var prefixId;
+		var oScanResultText;
+
 
         return Controller.extend("pmnotificationapp.controller.Main", {
             onInit: function () {
@@ -26,7 +31,16 @@ sap.ui.define([
                 oUploadSet.getDefaultFileUploader().setTooltip("")
                 oUploadSet.getDefaultFileUploader().setIconOnly(true)
                 oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
-
+                
+                //Init Barcode Scanner
+                prefixId = this.createId();
+				if (prefixId){
+					prefixId = prefixId.split("--")[0] + "--";
+				} else {
+					prefixId = "";
+				}
+                debugger
+				oScanResultText = Element.getElementById(prefixId + '_IDEqui');
             },
 
 
@@ -34,7 +48,6 @@ sap.ui.define([
             onRouteMatched: function (oEvent) {
                 var oModel = this.getView().getModel()
                 var that = this
-
 
                 // Create current date object
                 const now = new Date();
@@ -67,7 +80,36 @@ sap.ui.define([
                     })
             },
 
-            // onUploadSelectedButton: function () {
+            // onScanSuccess: function(oEvent) {
+			// 	if (oEvent.getParameter("cancelled")) {
+			// 		MessageToast.show("Scan cancelled", { duration:1000 });
+			// 	} else {
+			// 		if (oEvent.getParameter("value")) {
+			// 			oScanResultText.setText(oEvent.getParameter("text"));
+			// 		} else {
+			// 			oScanResultText.setText('');
+			// 		}
+			// 	}
+			// },
+
+			// onScanError: function(oEvent) {
+			// 	MessageToast.show("Scan failed: " + oEvent, { duration:1000 });
+			// },
+
+			// onScanLiveupdate: function(oEvent) {
+			// 	// User can implement the validation about inputting value
+			// },
+
+			// onAfterRendering: function() {
+			// 	// Reset the scan result
+			// 	var oScanButton = Element.getElementById(prefixId + '_IDEqui');
+			// 	if (oScanButton) {
+			// 		$(oScanButton.getDomRef()).on("click", function(){
+			// 			oScanResultText.setText('');
+			// 		});
+			// 	}
+			// }
+            // // onUploadSelectedButton: function () {
             //     var oUploadSet = this.byId("UploadSet");
 
             //     oUploadSet.getItems().forEach(function (oItem) {
