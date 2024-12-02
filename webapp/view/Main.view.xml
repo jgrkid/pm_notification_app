@@ -36,7 +36,7 @@
 			                            scanFail="onScanError"
 			                            inputLiveUpdate="onScanLiveupdate"
 			                            dialogTitle="Barcode"
-                                        width="5%"
+                                        width="7%"
 		                            />
 		                    </Toolbar>
 	                    </smartForm:customToolbar>
@@ -168,8 +168,8 @@
         <footer>
             <OverflowToolbar id="otbFooter" design="Solid">
             	<ToolbarSpacer id="_IDGenToolbarSpacer" />
-                <Button id="_IDFSave" type="Emphasized" text="Sichern"/>
-                <Button id="_IDFCanc" type="Default" text="Abbrechen"/>
+                <Button id="_IDFSave" type="Emphasized" text="Sichern" press="onSave"/>
+                <Button id="_IDFCanc" type="Default" text="Abbrechen" press="onCancel"/>
             </OverflowToolbar>
         </footer>
 

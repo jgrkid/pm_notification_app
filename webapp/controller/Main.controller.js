@@ -39,7 +39,7 @@ sap.ui.define([
 				} else {
 					prefixId = "";
 				}
-                debugger
+
 				oScanResultText = Element.getElementById(prefixId + '_IDEqui');
             },
 
