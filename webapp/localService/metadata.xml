@@ -5,62 +5,62 @@
     </edmx:Reference>
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="ZPM_MAINTENANCE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <EntityType Name="Z4DP_C_PM_VH_DMG_PATTERNType" sap:content-version="1">
+            <EntityType Name="Z4DP_C_PM_DMG_PATTERN_VHType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="CatalogType"/>
                     <PropertyRef Name="CodeGroup"/>
                     <PropertyRef Name="DamageKey"/>
                 </Key>
-                <Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Catalog"/>
+                <Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Catalog" sap:creatable="false" sap:updatable="false"/>
                 <Property Name="CodeGroup" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase" sap:label="Code group"/>
                 <Property Name="DamageKey" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="DamageDesc" sap:label="Code"/>
                 <Property Name="DamageDesc" Type="Edm.String" MaxLength="40" sap:label="Short text for code"/>
+                <Property Name="CatalogText" Type="Edm.String" MaxLength="40" sap:label="Short text"/>
             </EntityType>
-            <EntityType Name="ZD4P_C_PM_VH_ASSIGNType" sap:content-version="1">
+            <EntityType Name="ZD4P_C_PM_PRIOK_VHType" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="PersonnelNumber"/>
+                    <PropertyRef Name="Impact"/>
                 </Key>
-                <Property Name="CompanyShortText" Type="Edm.String" MaxLength="25" sap:label="Org.Unit Short Text"/>
-                <Property Name="PersonnelNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Personnel number"/>
-                <Property Name="LastName" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Last name"/>
-                <Property Name="FirstName" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="First name"/>
-                <Property Name="FullName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
-                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
+                <Property Name="Impact" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:text="ShortText" sap:label="Effect"/>
+                <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:label="Effect"/>
             </EntityType>
-            <EntityType Name="ZD4P_C_PM_VH_TECH_OBJType" sap:content-version="1">
+            <EntityType Name="ZD4P_C_PM_TECH_OBJ_VHType" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Equipment"/>
-                    <PropertyRef Name="FunctionalLocation"/>
+                    <PropertyRef Name="TechnicalObject"/>
+                    <PropertyRef Name="TechObjIsEquipOrFuncnlLoc"/>
                 </Key>
-                <Property Name="Equipment" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:text="Equipment" sap:label="Equipment"/>
-                <Property Name="FunctionalLocation" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Functional Location"/>
-                <Property Name="CreatedAt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On"/>
-                <Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By"/>
-                <Property Name="ChangedAt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On"/>
-                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by"/>
+                <Property Name="TechnicalObject" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase"/>
+                <Property Name="TechObjIsEquipOrFuncnlLoc" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Tech. Obj. Type"/>
+                <Property Name="ABCIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"/>
                 <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="AuthorizGroup"/>
-                <Property Name="EquipmentCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Equipment category"/>
-                <Property Name="Manufacturer" Type="Edm.String" MaxLength="30" sap:label="Manufacturer"/>
-                <Property Name="TypeOfTechnicalObject" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Technical obj. type"/>
-                <Property Name="AcquisitionValue" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="CurrencyKey" sap:label="Acquisition Value"/>
-                <Property Name="CurrencyKey" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:semantics="currency-code"/>
-                <Property Name="ABCIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ABC indicator"/>
+                <Property Name="BusinessArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase"/>
                 <Property Name="CatalogProfile" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Catalog profile"/>
-                <Property Name="PlantSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Plant section"/>
-                <Property Name="TypeDescription" Type="Edm.String" MaxLength="20" sap:label="Model number"/>
-                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
-                <Property Name="BusinessArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Business Area"/>
-                <Property Name="ControllingArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Controlling Area"/>
-                <Property Name="CostCenter" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cost Center"/>
-                <Property Name="MaintenancePlannerGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Planner group"/>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase"/>
+                <Property Name="ControllingArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase"/>
+                <Property Name="CostCenter" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"/>
+                <Property Name="WorkCenter" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase"/>
+                <Property Name="MainWorkCenter" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase"/>
+                <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase"/>
+                <Property Name="AssetManufacturerName" Type="Edm.String" MaxLength="30" sap:label="Manufacturer"/>
+                <Property Name="ManufacturerPartTypeName" Type="Edm.String" MaxLength="20" sap:label="Model number"/>
                 <Property Name="MaintenancePlanningPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Planning plant"/>
-                <Property Name="Room" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Room"/>
-                <Property Name="SortField" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Sort field"/>
-                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Division"/>
-                <Property Name="LocationTechnicalObject" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location"/>
-                <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Maintenance plant"/>
+                <Property Name="MaintenancePlannerGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="MaintenancePlannerGroupName" sap:label="Planner group"/>
+                <Property Name="MaintenancePlannerGroupName" Type="Edm.String" MaxLength="18"/>
+                <Property Name="PlantSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase"/>
+                <Property Name="AssetRoom" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase"/>
+                <Property Name="MaintObjectFreeDefinedAttrib" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase"/>
+                <Property Name="TechnicalObjectCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"/>
+                <Property Name="TechnicalObjectType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Technical obj. type"/>
+                <Property Name="AcquisitionValue" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="Currency" sap:label="Acquisition Value"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by"/>
+                <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On"/>
+                <Property Name="Division" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"/>
+                <Property Name="AssetLocation" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"/>
             </EntityType>
-            <EntityType Name="ZD4P_C_PM_VH_USERType" sap:content-version="1">
+            <EntityType Name="ZD4P_C_PM_USER_VHType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Username"/>
                 </Key>
@@ -69,277 +69,97 @@
                 <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:label="Last name"/>
                 <Property Name="FullName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
             </EntityType>
+            <EntityType Name="ZD4P_C_PM_ASSIGN_VHType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PersonnelNumber"/>
+                </Key>
+                <Property Name="PersonnelNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Personnel number"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Last name"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="First name"/>
+                <Property Name="FullName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
+                <Property Name="CompanyShortText" Type="Edm.String" MaxLength="25" sap:label="Org.Unit Short Text"/>
+            </EntityType>
             <EntityType Name="ZD4P_C_PM_NOTIFType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="UUID"/>
-                    <PropertyRef Name="Equipment"/>
-                    <PropertyRef Name="FunctionalLocation"/>
+                    <PropertyRef Name="TechnicalObject"/>
                 </Key>
-                <Property Name="UUID" Type="Edm.Guid" Nullable="false" sap:label="UUID"/>
-                <Property Name="Equipment" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:text="Equipment" sap:label="Equipment" sap:value-list="standard"/>
-                <Property Name="FunctionalLocation" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Functional Location" sap:value-list="standard"/>
                 <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:label="Description"/>
                 <Property Name="Description" Type="Edm.String" MaxLength="72" sap:label="Text Line"/>
                 <Property Name="CodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Problem"/>
                 <Property Name="Code" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Damage Code" sap:value-list="standard"/>
                 <Property Name="Damage" Type="Edm.String" MaxLength="80" sap:label="Damage Text"/>
-                <Property Name="Priority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Priority"/>
+                <Property Name="Priority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Priority" sap:value-list="standard"/>
                 <Property Name="LocationTechnicalObject" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location"/>
                 <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Maintenance plant"/>
                 <Property Name="DeclarationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Notification date"/>
                 <Property Name="DeclarationTime" Type="Edm.Time" Precision="0" sap:label="Notification Time"/>
                 <Property Name="Declarant" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Reported by" sap:value-list="standard"/>
                 <Property Name="Assigned" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Partner" sap:value-list="standard"/>
+                <Property Name="UUID" Type="Edm.Guid" Nullable="false" sap:label="UUID"/>
+                <Property Name="TechnicalObject" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object"/>
+                <Property Name="Equipment" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Equipment"/>
+                <Property Name="FunctionalLocation" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Functional Location"/>
                 <NavigationProperty Name="to_assigned" Relationship="ZPM_MAINTENANCE_SRV.assoc_9C9165E8E0131F2F3D97F34848D240B2" FromRole="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2" ToRole="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
                 <NavigationProperty Name="to_dmg_pattern" Relationship="ZPM_MAINTENANCE_SRV.assoc_40F5DE3358142A9A7286072C2B5D8B6C" FromRole="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C" ToRole="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
-                <NavigationProperty Name="to_equipment" Relationship="ZPM_MAINTENANCE_SRV.assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" FromRole="FromRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" ToRole="ToRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
-                <NavigationProperty Name="to_funcloc" Relationship="ZPM_MAINTENANCE_SRV.assoc_9F3326686A99DD9896ECAE2283EE6519" FromRole="FromRole_assoc_9F3326686A99DD9896ECAE2283EE6519" ToRole="ToRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
+                <NavigationProperty Name="to_priok" Relationship="ZPM_MAINTENANCE_SRV.assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" FromRole="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" ToRole="ToRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
+                <NavigationProperty Name="to_techobj" Relationship="ZPM_MAINTENANCE_SRV.assoc_98EF3FDD9461EDD06019376E9DA86B05" FromRole="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05" ToRole="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
                 <NavigationProperty Name="to_user" Relationship="ZPM_MAINTENANCE_SRV.assoc_9DC529D6D006B8FE6D3C6C19B39E778E" FromRole="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E" ToRole="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
             </EntityType>
             <Association Name="assoc_40F5DE3358142A9A7286072C2B5D8B6C" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
-                <End Type="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_VH_DMG_PATTERNType" Multiplicity="0..1" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
+                <End Type="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DMG_PATTERN_VHType" Multiplicity="0..1" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
             </Association>
-            <Association Name="assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" sap:content-version="1">
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" Multiplicity="1" Role="ToRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+            <Association Name="assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" sap:content-version="1">
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_PRIOK_VHType" Multiplicity="0..1" Role="ToRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
             </Association>
-            <Association Name="assoc_9F3326686A99DD9896ECAE2283EE6519" sap:content-version="1">
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" Multiplicity="1" Role="ToRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
+            <Association Name="assoc_98EF3FDD9461EDD06019376E9DA86B05" sap:content-version="1">
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType" Multiplicity="1" Role="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
             </Association>
             <Association Name="assoc_9DC529D6D006B8FE6D3C6C19B39E778E" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_USERType" Multiplicity="1" Role="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_USER_VHType" Multiplicity="1" Role="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
             </Association>
             <Association Name="assoc_9C9165E8E0131F2F3D97F34848D240B2" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
-                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_ASSIGNType" Multiplicity="0..1" Role="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType" Multiplicity="0..1" Role="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
             </Association>
             <EntityContainer Name="ZPM_MAINTENANCE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="Z4DP_C_PM_VH_DMG_PATTERN" EntityType="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_VH_DMG_PATTERNType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
-                <EntitySet Name="ZD4P_C_PM_VH_ASSIGN" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_ASSIGNType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
-                <EntitySet Name="ZD4P_C_PM_VH_TECH_OBJ" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_TECH_OBJType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
-                <EntitySet Name="ZD4P_C_PM_VH_USER" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_VH_USERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="Z4DP_C_PM_DMG_PATTERN_VH" EntityType="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DMG_PATTERN_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZD4P_C_PM_PRIOK_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_PRIOK_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZD4P_C_PM_TECH_OBJ_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZD4P_C_PM_USER_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_USER_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZD4P_C_PM_ASSIGN_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_NOTIF" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
-                <AssociationSet Name="assoc_9F3326686A99DD9896ECAE2283EE6519" Association="ZPM_MAINTENANCE_SRV.assoc_9F3326686A99DD9896ECAE2283EE6519" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
-                    <End EntitySet="ZD4P_C_PM_VH_TECH_OBJ" Role="ToRole_assoc_9F3326686A99DD9896ECAE2283EE6519"/>
+                <AssociationSet Name="assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" Association="ZPM_MAINTENANCE_SRV.assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
+                    <End EntitySet="ZD4P_C_PM_PRIOK_VH" Role="ToRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
                 </AssociationSet>
                 <AssociationSet Name="assoc_9C9165E8E0131F2F3D97F34848D240B2" Association="ZPM_MAINTENANCE_SRV.assoc_9C9165E8E0131F2F3D97F34848D240B2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
-                    <End EntitySet="ZD4P_C_PM_VH_ASSIGN" Role="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
-                </AssociationSet>
-                <AssociationSet Name="assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" Association="ZPM_MAINTENANCE_SRV.assoc_F8EB3DECC3DD9859D5197D3ACC7FF595" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
-                    <End EntitySet="ZD4P_C_PM_VH_TECH_OBJ" Role="ToRole_assoc_F8EB3DECC3DD9859D5197D3ACC7FF595"/>
+                    <End EntitySet="ZD4P_C_PM_ASSIGN_VH" Role="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
                 </AssociationSet>
                 <AssociationSet Name="assoc_9DC529D6D006B8FE6D3C6C19B39E778E" Association="ZPM_MAINTENANCE_SRV.assoc_9DC529D6D006B8FE6D3C6C19B39E778E" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
-                    <End EntitySet="ZD4P_C_PM_VH_USER" Role="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
+                    <End EntitySet="ZD4P_C_PM_USER_VH" Role="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_98EF3FDD9461EDD06019376E9DA86B05" Association="ZPM_MAINTENANCE_SRV.assoc_98EF3FDD9461EDD06019376E9DA86B05" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
+                    <End EntitySet="ZD4P_C_PM_TECH_OBJ_VH" Role="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
                 </AssociationSet>
                 <AssociationSet Name="assoc_40F5DE3358142A9A7286072C2B5D8B6C" Association="ZPM_MAINTENANCE_SRV.assoc_40F5DE3358142A9A7286072C2B5D8B6C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
-                    <End EntitySet="Z4DP_C_PM_VH_DMG_PATTERN" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
+                    <End EntitySet="Z4DP_C_PM_DMG_PATTERN_VH" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
                 </AssociationSet>
             </EntityContainer>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Equipment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                <Annotation Term="Common.ValueList">
-                    <Record>
-                        <PropertyValue Property="Label" String="Wertehilfe technisches Objekt"/>
-                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_VH_TECH_OBJ"/>
-                        <PropertyValue Property="SearchSupported" Bool="true"/>
-                        <PropertyValue Property="Parameters">
-                            <Collection>
-                                <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Equipment"/>
-                                    <PropertyValue Property="ValueListProperty" String="Equipment"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MaintenancePlant"/>
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlant"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="FunctionalLocation"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CreatedAt"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CreatedBy"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ChangedAt"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ChangedBy"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="AuthorizationGroup"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="EquipmentCategory"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Manufacturer"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="TypeOfTechnicalObject"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="AcquisitionValue"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CurrencyKey"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ABCIndicator"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CatalogProfile"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="PlantSection"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="TypeDescription"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="BusinessArea"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ControllingArea"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CostCenter"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlannerGroup"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlanningPlant"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Room"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="SortField"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Division"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="LocationTechnicalObject"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/FunctionalLocation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                <Annotation Term="Common.ValueList">
-                    <Record>
-                        <PropertyValue Property="Label" String="Wertehilfe technisches Objekt"/>
-                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_VH_TECH_OBJ"/>
-                        <PropertyValue Property="SearchSupported" Bool="true"/>
-                        <PropertyValue Property="Parameters">
-                            <Collection>
-                                <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FunctionalLocation"/>
-                                    <PropertyValue Property="ValueListProperty" String="FunctionalLocation"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="MaintenancePlant"/>
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlant"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Equipment"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CreatedAt"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CreatedBy"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ChangedAt"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ChangedBy"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="AuthorizationGroup"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="EquipmentCategory"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Manufacturer"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="TypeOfTechnicalObject"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="AcquisitionValue"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CurrencyKey"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ABCIndicator"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CatalogProfile"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="PlantSection"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="TypeDescription"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="BusinessArea"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="ControllingArea"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CostCenter"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlannerGroup"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="MaintenancePlanningPlant"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Room"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="SortField"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="Division"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="LocationTechnicalObject"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-            </Annotations>
             <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Common.ValueList">
                     <Record>
                         <PropertyValue Property="Label" String="Wertehilfe Schadensbild (Dropdown)"/>
-                        <PropertyValue Property="CollectionPath" String="Z4DP_C_PM_VH_DMG_PATTERN"/>
+                        <PropertyValue Property="CollectionPath" String="Z4DP_C_PM_DMG_PATTERN_VH"/>
                         <PropertyValue Property="SearchSupported" Bool="true"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
@@ -358,6 +178,29 @@
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="CatalogType"/>
                                 </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CatalogText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Priority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Wertehilfe Auswirkung (Dropdown)"/>
+                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_PRIOK_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Priority"/>
+                                    <PropertyValue Property="ValueListProperty" String="Impact"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShortText"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -367,7 +210,7 @@
                 <Annotation Term="Common.ValueList">
                     <Record>
                         <PropertyValue Property="Label" String="Wertehilfe User (Meldener)"/>
-                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_VH_USER"/>
+                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_USER_VH"/>
                         <PropertyValue Property="SearchSupported" Bool="true"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
@@ -393,16 +236,13 @@
                 <Annotation Term="Common.ValueList">
                     <Record>
                         <PropertyValue Property="Label" String="Wertehilfe Key User (Zuordnet an)"/>
-                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_VH_ASSIGN"/>
+                        <PropertyValue Property="CollectionPath" String="ZD4P_C_PM_ASSIGN_VH"/>
                         <PropertyValue Property="SearchSupported" Bool="true"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterInOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="Assigned"/>
                                     <PropertyValue Property="ValueListProperty" String="PersonnelNumber"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CompanyShortText"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="LastName"/>
@@ -416,9 +256,20 @@
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
                                 </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CompanyShortText"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>TechnicalObject</PropertyPath>
+                        <PropertyPath>TechObjIsEquipOrFuncnlLoc</PropertyPath>
+                    </Collection>
                 </Annotation>
             </Annotations>
             <atom:link rel="self" href="https://fpe8d:443/sap/opu/odata/sap/ZPM_MAINTENANCE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>

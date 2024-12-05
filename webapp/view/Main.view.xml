@@ -45,11 +45,8 @@
                                                 columnsM="1" columnsL="1" columnsXL="1" />
                     </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup" >
-                        <smartForm:GroupElement id="_IDEltechObEQUI" label="{i18n>labelEqui}">
-                            <smartField:SmartField id="_IDEqui"  value="{Equipment}" placeholder="{i18n>phTObj}"/>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement id="_IDEltechObFUNCLOC" label="{i18n>labelFuncloc}">
-                            <smartField:SmartField id="_IDFuncloc" value="{FunctionalLocation}" placeholder="{i18n>phTObj}"/>
+                        <smartForm:GroupElement id="_IDElTechOb" label="{i18n>labelTechObj}">
+                            <smartField:SmartField id="_IDTechOb" value="{TechnicalObject}" placeholder="{i18n>phTObj}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEShortText" label="{i18n>labelShortT}">
                             <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="{i18n>phShortT}" mandatory="true"/>
@@ -63,37 +60,37 @@
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDamageConfig" controlType="dropDownList"
                                                               displayBehaviour="descriptionAndId"/>
-                                    </smartField:configuration>
-                                </smartField:SmartField>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEPriority" >
-                                <smartField:SmartField id="_IDPriority" textLabel="{i18n>labelPrio}" value="{Priority}">
-                                    <smartField:configuration>
-                                        <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
+                                </smartField:configuration>
+                            </smartField:SmartField>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEPriority" >
+                            <smartField:SmartField id="_IDPriority" textLabel="{i18n>labelPrio}" value="{Priority}">
+                                <smartField:configuration>
+                                    <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
                                                                   displayBehaviour="descriptionAndId" />
-                                    </smartField:configuration>
-                                </smartField:SmartField>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDELocTechOb" label="{i18n>labelLocTechOb}">
-                                <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="{i18n>phTechOb}"/>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true" elementForLabel="0">
-                                <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{DeclarationDate}">
-                                    <smartField:configuration>
-                                        <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
-                                    </smartField:configuration>
-                                </smartField:SmartField>
-                                <smartField:SmartField id="_IDDeclareTime" value="{DeclarationTime}">
-                                    <smartField:configuration>
-                                        <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
-                                    </smartField:configuration>
-                                </smartField:SmartField>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEDeclarant" label="{i18n>labelDeclarant}">
-                                <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="_IDEAssignedTo" label="{i18n>labelAssignedTo}">
-                                <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
+                                </smartField:configuration>
+                            </smartField:SmartField>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDELocTechOb" label="{i18n>labelLocTechOb}">
+                            <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="{i18n>phTechOb}"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true" elementForLabel="0">
+                            <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{DeclarationDate}">
+                                <smartField:configuration>
+                                    <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
+                                </smartField:configuration>
+                            </smartField:SmartField>
+                            <smartField:SmartField id="_IDDeclareTime" value="{DeclarationTime}">
+                                <smartField:configuration>
+                                    <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
+                                </smartField:configuration>
+                            </smartField:SmartField>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEDeclarant" label="{i18n>labelDeclarant}">
+                            <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement id="_IDEAssignedTo" label="{i18n>labelAssignedTo}">
+                            <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
                         </smartForm:GroupElement>
                     </smartForm:Group>      
                 </smartForm:SmartForm>

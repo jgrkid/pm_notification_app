@@ -40,7 +40,7 @@ sap.ui.define([
 					prefixId = "";
 				}
 
-				oScanResultText = Element.getElementById(prefixId + '_IDEqui');
+				oScanResultText = Element.getElementById(prefixId + '_IDTechOb');
             },
 
 
