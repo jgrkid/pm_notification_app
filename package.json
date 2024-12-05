@@ -25,5 +25,8 @@
     "unit-tests": "fiori run --config ./ui5-mock.yaml --open 'test/unit/unitTests.qunit.html'",
     "int-tests": "fiori run --config ./ui5-mock.yaml --open 'test/integration/opaTests.qunit.html'"
   },
-  "sapuxLayer": "CUSTOMER_BASE"
+  "sapuxLayer": "CUSTOMER_BASE",
+  "dependencies": {
+    "cross-spawn": "^7.0.6"
+  }
 }
