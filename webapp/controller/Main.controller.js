@@ -73,7 +73,9 @@ sap.ui.define([
                 oModel.metadataLoaded(true).then(
                     function () {
                         var oContext = oModel.createEntry("/ZD4P_C_PM_NOTIF", {
-                            properties: { DeclarationDate: new Date(), DeclarationTime: { "ms": today, "__edmType": "Edm.Time" }, Declarant: sap.ushell.Container.getService("UserInfo").getId() }
+                            properties: { DeclarationDate: new Date(), 
+                                          DeclarationTime: { "ms": today, "__edmType": "Edm.Time" }, 
+                                          Declarant: sap.ushell.Container.getService("UserInfo").getId() }
                         });
 
                         that.getView().setBindingContext(oContext);
