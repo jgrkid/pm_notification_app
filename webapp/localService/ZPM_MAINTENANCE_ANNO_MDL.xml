@@ -18,57 +18,23 @@
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
                 <Annotation Term="UI.Hidden"/>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/UUID">
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_PRIOK_VHType/">
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
                 <Annotation Term="UI.Hidden"/>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Description">
-                <Annotation Term="UI.MultiLineText"/>
-            </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/TechnicalObject"/>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Code"/>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Priority"/>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Declarant"/>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Assigned"/>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType">
-                <Annotation Term="UI.Identification">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="TechnicalObject"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Equipment"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="FunctionalLocation"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="ShortText"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Description"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType/TechObjIsEquipOrFuncnlLoc"/>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="TechnicalObject"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="Equipment"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="FunctionalLocation"/>
+                            <PropertyValue Property="Value" Path="TechObjIsEquipOrFuncnlLoc"/>
                         </Record>
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_PRIOK_VHType/">
-                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
-                <Annotation Term="UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType/TechObjIsEquipOrFuncnlLoc"/>
             <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_USER_VHType/">
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
                 <Annotation Term="UI.Hidden"/>
@@ -111,6 +77,18 @@
                     </Collection>
                 </Annotation>
             </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/UUID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Description">
+                <Annotation Term="UI.MultiLineText"/>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/TechnicalObject"/>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Code"/>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Priority"/>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Declarant"/>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/Assigned"/>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

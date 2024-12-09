@@ -26,6 +26,7 @@
                                      validationMode="Async"
                                      editable="true"
                                      title="{i18n>grouptitle}"
+                                     entityType="/ZD4P_C_PM_NOTIF"
                                      >
                     	<smartForm:customToolbar>
 		                    <Toolbar id="_IDGenToolbar" height="3rem">
@@ -37,6 +38,7 @@
 			                            inputLiveUpdate="onScanLiveupdate"
 			                            dialogTitle="Barcode"
                                         width="7%"
+                                      
 		                            />
 		                    </Toolbar>
 	                    </smartForm:customToolbar>
@@ -46,7 +48,7 @@
                     </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup" >
                         <smartForm:GroupElement id="_IDElTechOb" label="{i18n>labelTechObj}">
-                            <smartField:SmartField id="_IDTechOb" value="{TechnicalObject}" placeholder="{i18n>phTObj}"/>
+                            <smartField:SmartField id="_IDTechOb" value="{TechnicalObject}" placeholder="{i18n>phTObj}" />
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEShortText" label="{i18n>labelShortT}">
                             <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="{i18n>phShortT}" mandatory="true"/>
@@ -72,7 +74,7 @@
                             </smartField:SmartField>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDELocTechOb" label="{i18n>labelLocTechOb}">
-                            <smartField:SmartField id="_IDLocTechOb" value="{ShortText}" placeholder="{i18n>phTechOb}"/>
+                            <smartField:SmartField id="_IDLocTechOb" value="{LocationTechnicalObject}" placeholder="{i18n>phTechOb}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true" elementForLabel="0">
                             <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{DeclarationDate}">

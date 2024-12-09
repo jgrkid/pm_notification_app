@@ -5,13 +5,14 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/m/upload/Uploader",
     "sap/ui/core/Element",
-    "sap/ui/model/odata/type/DateTimeWithTimezone"
+    "sap/ui/model/odata/type/DateTimeWithTimezone",
+    "sap/m/MessageToast"
 ],
-    function (MobileLibrary, Controller, Item, JSONModel, Uploader, Element) {
+    function (MobileLibrary, Controller, Item, JSONModel, Uploader, Element, MessageToast) {
         "use strict";
 
         var prefixId;
-		var oScanResultText;
+        var oScanResultText;
 
 
         return Controller.extend("pmnotificationapp.controller.Main", {
@@ -31,16 +32,17 @@ sap.ui.define([
                 oUploadSet.getDefaultFileUploader().setTooltip("")
                 oUploadSet.getDefaultFileUploader().setIconOnly(true)
                 oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
-                
+
                 //Init Barcode Scanner
                 prefixId = this.createId();
-				if (prefixId){
-					prefixId = prefixId.split("--")[0] + "--";
-				} else {
-					prefixId = "";
-				}
-
-				oScanResultText = Element.getElementById(prefixId + '_IDTechOb');
+                if (prefixId) {
+                    prefixId = prefixId.split("--")[0] + "--";
+                } else {
+                    prefixId = "";
+                }
+                // application-pmnotificationapp-display-component---Main--_IDTechOb-input-inner
+                // application-pmnotificationapp-display-component--
+                oScanResultText = Element.getElementById(prefixId + '_IDTechOb');
             },
 
 
@@ -73,44 +75,67 @@ sap.ui.define([
                 oModel.metadataLoaded(true).then(
                     function () {
                         var oContext = oModel.createEntry("/ZD4P_C_PM_NOTIF", {
-                            properties: { DeclarationDate: new Date(), 
-                                          DeclarationTime: { "ms": today, "__edmType": "Edm.Time" }, 
-                                          Declarant: sap.ushell.Container.getService("UserInfo").getId() }
+                            properties: {
+                                DeclarationDate: new Date(),
+                                DeclarationTime: { "ms": today, "__edmType": "Edm.Time" },
+                                Declarant: sap.ushell.Container.getService("UserInfo").getId()
+                            }
                         });
 
-                        that.getView().setBindingContext(oContext);
+                        that.byId("smartForm").setBindingContext(oContext)
                     })
             },
 
-            // onScanSuccess: function(oEvent) {
-			// 	if (oEvent.getParameter("cancelled")) {
-			// 		MessageToast.show("Scan cancelled", { duration:1000 });
-			// 	} else {
-			// 		if (oEvent.getParameter("value")) {
-			// 			oScanResultText.setText(oEvent.getParameter("text"));
-			// 		} else {
-			// 			oScanResultText.setText('');
-			// 		}
-			// 	}
-			// },
+            onSave: function (oEvent) {
+                /*create operation*/
+                var oSmartForm = this.byId("smartForm");
+                var oModel = this.getView().getModel();
+                var oDataRes = oSmartForm.getBindingContext().getObject();
 
-			// onScanError: function(oEvent) {
-			// 	MessageToast.show("Scan failed: " + oEvent, { duration:1000 });
-			// },
+                // Messages
+                var ssuccess = this.getView().getModel("i18n").getResourceBundle().getText("msgboxsuccess");
+                var sfailure = this.getView().getModel("i18n").getResourceBundle().getText("msgboxfailure");
 
-			// onScanLiveupdate: function(oEvent) {
-			// 	// User can implement the validation about inputting value
-			// },
+                // OData-Request an den CREATE-Service senden
+                oModel.create("/ZD4P_C_PM_NOTIF", oDataRes, {
+                    success: function () {
+                        sap.m.MessageToast.show(ssuccess);
+                    },
+                    error: function (oError) {
+                        sap.m.MessageBox.error(sfailure);
+                    }
+                });
 
-			// onAfterRendering: function() {
-			// 	// Reset the scan result
-			// 	var oScanButton = Element.getElementById(prefixId + '_IDEqui');
-			// 	if (oScanButton) {
-			// 		$(oScanButton.getDomRef()).on("click", function(){
-			// 			oScanResultText.setText('');
-			// 		});
-			// 	}
-			// }
+            },
+            onScanSuccess: function (oEvent) {
+                if (oEvent.getParameter("cancelled")) {
+                    MessageToast.show("Scan cancelled", { duration: 1000 });
+                } else {
+                    if (oEvent.getParameter("text")) {
+                        oScanResultText.setText(oEvent.getParameter("text"));
+                    } else {
+                        oScanResultText.setText('');
+                    }
+                }
+            },
+
+            onScanError: function (oEvent) {
+                MessageToast.show("Scan failed: " + oEvent, { duration: 1000 });
+            },
+
+            onScanLiveupdate: function (oEvent) {
+                // User can implement the validation about inputting value
+            },
+
+            onAfterRendering: function () {
+                // Reset the scan result
+                var oScanButton = Element.getElementById(prefixId + '_IDTechOb');
+                if (oScanButton) {
+                    $(oScanButton.getDomRef()).on("click", function () {
+                        oScanResultText.setText('');
+                    });
+                }
+            }
             // // onUploadSelectedButton: function () {
             //     var oUploadSet = this.byId("UploadSet");
 
