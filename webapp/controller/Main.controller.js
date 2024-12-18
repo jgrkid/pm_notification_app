@@ -18,31 +18,31 @@ sap.ui.define([
         return Controller.extend("pmnotificationapp.controller.Main", {
             onInit: function () {
 
+                var that = this;
+
                 // Routing
                 this.oOwnerComponent = this.getOwnerComponent();
                 this.oRouter = this.oOwnerComponent.getRouter();
                 this.oRouter.getRoute("RouteMain").attachPatternMatched(this.onRouteMatched, this);
 
-
                 // //Init Uploader
-                var oUploadSet = this.byId("UploadSet")
+                var oUploadSet = that.byId("UploadSet")
 
                 // Modify "add file" button
                 oUploadSet.getDefaultFileUploader().setButtonOnly(false)
                 oUploadSet.getDefaultFileUploader().setTooltip("")
                 oUploadSet.getDefaultFileUploader().setIconOnly(true)
                 oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
+                oUploadSet.attachUploadCompleted(that.onUploadCompleted.bind(that));
 
                 //Init Barcode Scanner
-                prefixId = this.createId();
+                prefixId = that.createId();
                 if (prefixId) {
                     prefixId = prefixId.split("--")[0] + "--";
                 } else {
                     prefixId = "";
                 }
-                // application-pmnotificationapp-display-component---Main--_IDTechOb-input-inner
-                // application-pmnotificationapp-display-component--
-                oScanResultText = Element.getElementById(prefixId + '_IDTechOb');
+                oScanResultText = Element.getElementById(prefixId + '-Main--_IDTechOb');
             },
 
 
@@ -96,10 +96,10 @@ sap.ui.define([
                 var ssuccess = this.getView().getModel("i18n").getResourceBundle().getText("msgboxsuccess");
                 var sfailure = this.getView().getModel("i18n").getResourceBundle().getText("msgboxfailure");
 
-                // OData-Request an den CREATE-Service senden
+                // OData-Request an den CREATE-Entity senden
                 oModel.create("/ZD4P_C_PM_NOTIF", oDataRes, {
                     success: function () {
-                        sap.m.MessageToast.show(ssuccess);
+                        sap.m.MessageBox.success(ssuccess);
                     },
                     error: function (oError) {
                         sap.m.MessageBox.error(sfailure);
@@ -112,9 +112,11 @@ sap.ui.define([
                     MessageToast.show("Scan cancelled", { duration: 1000 });
                 } else {
                     if (oEvent.getParameter("text")) {
-                        oScanResultText.setText(oEvent.getParameter("text"));
+                        // oScanResultText.setText(oEvent.getParameter("text"));
+                        oScanResultText.setValue(oEvent.getParameter("text"));
                     } else {
-                        oScanResultText.setText('');
+                        // oScanResultText.setText('');
+                        oScanResultText.setValue('');
                     }
                 }
             },
@@ -124,38 +126,36 @@ sap.ui.define([
             },
 
             onScanLiveupdate: function (oEvent) {
-                // User can implement the validation about inputting value
+                // User can implement the validation about inputing value
             },
 
             onAfterRendering: function () {
                 // Reset the scan result
-                var oScanButton = Element.getElementById(prefixId + '_IDTechOb');
+                var oScanButton = Element.getElementById(prefixId + 'BarcodeScannerButton');
                 if (oScanButton) {
                     $(oScanButton.getDomRef()).on("click", function () {
-                        oScanResultText.setText('');
+                        // oScanResultText.setText('');
+                        oScanResultText.setValue('');
                     });
                 }
+            },
+
+
+            onUploadSelectedButton: function () {
+                var oUploadSet = this.byId("UploadSet");
+                oUploadSet.getItems().forEach(function (oItem) {
+                    if (oItem.getListItem().getSelected()) {
+                        oUploadSet.uploadItem(oItem);
+                    }
+                });
+            },
+            onUploadCompleted: function (oEvent) {
+                this.oItemToUpdate = null;
+                debugger
+                var oUploadSet = this.byId("UploadSet");
+                var oItem = oUploadSet.getItems();
+                
+                // this.byId("versionButton").setEnabled(false);
             }
-            // // onUploadSelectedButton: function () {
-            //     var oUploadSet = this.byId("UploadSet");
-
-            //     oUploadSet.getItems().forEach(function (oItem) {
-            //         if (oItem.getListItem().getSelected()) {
-            //             oUploadSet.uploadItem(oItem);
-            //         }
-            //     });
-            // },
-            // onDownloadSelectedButton: function () {
-            //     var oUploadSet = this.byId("UploadSet");
-
-            //     oUploadSet.getItems().forEach(function (oItem) {
-            //         if (oItem.getListItem().getSelected()) {
-            //             oItem.download(true);
-            //         }
-            //     });
-            // },
-            // onUploadCompleted: function(oEvent) {
-            //     this.oItemToUpdate = null;
-            // }
         });
     });

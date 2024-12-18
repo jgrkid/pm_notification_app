@@ -32,13 +32,12 @@
 		                    <Toolbar id="_IDGenToolbar" height="3rem">
 			                    <ToolbarSpacer id="_IDGenToolbarSpacer2" />
 			                    	<ndc:BarcodeScannerButton
-			                            id="sampleBarcodeScannerButton"
+			                            id="BarcodeScannerButton"
 			                            scanSuccess="onScanSuccess"
 			                            scanFail="onScanError"
 			                            inputLiveUpdate="onScanLiveupdate"
 			                            dialogTitle="Barcode"
                                         width="7%"
-                                      
 		                            />
 		                    </Toolbar>
 	                    </smartForm:customToolbar>
@@ -113,27 +112,20 @@
                         maxFileSize="200"
                         mediaTypes="text/plain,application/msword,image/jpeg,image/png,application/pdf,image/jpg"
                         uploadUrl="../../../../upload"
-                        mode="MultiSelect"
+                        mode="None"
                         sameFilenameAllowed="false"
                         items="{path: 'items', templateShareable: false}"
-                        afterItemRemoved="onAfterItemRemoved" 
-                        uploadCompleted="onUploadCompleted"
                         visible="true">
-                    <upload:toolbar>
+                    <!-- <upload:toolbar>
                         <OverflowToolbar id="_IDOVT" class="sapFDynamicPageAlignContent"> 
-                            <!-- <Title id="attachmentTitle" level="Auto"/> -->
 				            <Title id="attachmentTitle" level="Auto" text="{i18n>labelAttachment}"/>
                             <ToolbarSpacer id="_IDToolbarSpacer"/>
-					        <Button
-							    id="downloadSelectedButton"
-							    icon="sap-icon://download"
-							    press="onDownloadSelectedButton"/>
                             <Button
-                                id="uploadSelectedButton"
+                                id="UploadSelectedButton"
 							    icon="sap-icon://upload"
 							    press="onUploadSelectedButton"/>
                         </OverflowToolbar>
-                    </upload:toolbar>
+                    </upload:toolbar> -->
                     <upload:items>
                         <upload:UploadSetItem id="_IDGenUploadSetItem1"
                                 fileName="{fileName}"
