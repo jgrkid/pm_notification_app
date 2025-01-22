@@ -110,12 +110,13 @@
                         terminationEnabled="true"
                         maxFileNameLength="30"
                         maxFileSize="200"
-                        mediaTypes="text/plain,application/msword,image/jpeg,image/png,application/pdf,image/jpg"
+                        mediaTypes="text/plain,application/msword,image/jpeg,image/png,application/pdf,image/jpeg"
                         uploadUrl="../../../../upload"
                         mode="None"
                         sameFilenameAllowed="false"
                         items="{path: 'items', templateShareable: false}"
-                        visible="true">
+                        visible="true"
+				        afterItemAdded="onUploadFileChange">
                     <!-- <upload:toolbar>
                         <OverflowToolbar id="_IDOVT" class="sapFDynamicPageAlignContent"> 
 				            <Title id="attachmentTitle" level="Auto" text="{i18n>labelAttachment}"/>

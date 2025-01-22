@@ -3,7 +3,14 @@
     "sap.app": {
         "id": "pmnotificationapp",
         "type": "application",
-        "i18n": "i18n/i18n.properties",
+        "i18n": {
+                "bundleName": "pmnotificationapp.i18n.i18n",
+                "supportedLocales": [
+                    "de",
+                    "en"
+                ],
+                "fallbackLocale": "de"
+        },
         "applicationVersion": {
             "version": "0.0.1"
         },

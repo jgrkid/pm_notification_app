@@ -13,6 +13,7 @@ sap.ui.define([
 
         var prefixId;
         var oScanResultText;
+        var oDocuments
 
 
         return Controller.extend("pmnotificationapp.controller.Main", {
@@ -27,13 +28,13 @@ sap.ui.define([
 
                 // //Init Uploader
                 var oUploadSet = that.byId("UploadSet")
+                oDocuments = [];
 
                 // Modify "add file" button
                 oUploadSet.getDefaultFileUploader().setButtonOnly(false)
                 oUploadSet.getDefaultFileUploader().setTooltip("")
                 oUploadSet.getDefaultFileUploader().setIconOnly(true)
                 oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
-                oUploadSet.attachUploadCompleted(that.onUploadCompleted.bind(that));
 
                 //Init Barcode Scanner
                 prefixId = that.createId();
@@ -96,7 +97,7 @@ sap.ui.define([
                 var ssuccess = this.getView().getModel("i18n").getResourceBundle().getText("msgboxsuccess");
                 var sfailure = this.getView().getModel("i18n").getResourceBundle().getText("msgboxfailure");
 
-                // OData-Request an den CREATE-Entity senden
+                // Send OData-Request to CREATE-Entity
                 oModel.create("/ZD4P_C_PM_NOTIF", oDataRes, {
                     success: function () {
                         sap.m.MessageBox.success(ssuccess);
@@ -141,21 +142,49 @@ sap.ui.define([
             },
 
 
-            onUploadSelectedButton: function () {
-                var oUploadSet = this.byId("UploadSet");
-                oUploadSet.getItems().forEach(function (oItem) {
-                    if (oItem.getListItem().getSelected()) {
-                        oUploadSet.uploadItem(oItem);
-                    }
-                });
+            onUploadFileChange: function (oEvent) {
+                //get file component
+                this.oFileUploadComponent = oEvent.getParameters("items").item.getFileObject();
+                if (this.oFileUploadComponent) {
+
+                    //call function to build buffer
+                    this._handleRawFile(this.oFileUploadComponent, this);
+                }
+
+                //get buffer
+                this.uploadFileRaw; // this is raw file then you can do what ever you want
+
+                var oDoc = this.uploadFileRaw
+                var base64String = this._arrayBufferToBase64(oDoc)
+                var DocName = this.uploadFileRaw.name
+                var DocType = this.uploadFileRaw.mimetype
             },
-            onUploadCompleted: function (oEvent) {
-                this.oItemToUpdate = null;
-                debugger
-                var oUploadSet = this.byId("UploadSet");
-                var oItem = oUploadSet.getItems();
-                
-                // this.byId("versionButton").setEnabled(false);
+
+            
+            _handleRawFile: function (oFile, oController) {
+                //handle file data
+                var oFileRaw = {
+                    name: oFile.name,
+                    mimetype: oFile.type,
+                    size: oFile.size,
+                    data: []
+                };
+                //reader
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    oFileRaw.data = e.target.result; //set buffer data
+                    oController.uploadFileRaw = oFileRaw;
+                }.bind(oController);
+                reader.readAsArrayBuffer(oFile);
+            },
+            _arrayBufferToBase64: function (buffer) {
+                var binary = '';
+                var bytes = new Uint8Array(buffer);
+                var len = bytes.byteLength;
+                for (var i = 0; i < len; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return window.btoa(binary);
             }
         });
     });
