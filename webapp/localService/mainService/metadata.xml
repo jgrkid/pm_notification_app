@@ -17,31 +17,6 @@
                 <Property Name="DamageDesc" Type="Edm.String" MaxLength="40" sap:label="Short text for code"/>
                 <Property Name="CatalogText" Type="Edm.String" MaxLength="40" sap:label="Short text"/>
             </EntityType>
-            <EntityType Name="ZD4P_C_PM_NOTIFType" sap:content-version="1">
-                <Key>
-                    <PropertyRef Name="UUID"/>
-                    <PropertyRef Name="TechnicalObject"/>
-                </Key>
-                <Property Name="UUID" Type="Edm.Guid" Nullable="false" sap:label="UUID"/>
-                <Property Name="TechnicalObject" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object" sap:value-list="standard"/>
-                <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:label="Description"/>
-                <Property Name="Description" Type="Edm.String" MaxLength="72" sap:label="Text Line"/>
-                <Property Name="CodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Problem"/>
-                <Property Name="Code" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Damage Code" sap:value-list="standard"/>
-                <Property Name="Damage" Type="Edm.String" MaxLength="40" sap:label="Short text for code"/>
-                <Property Name="Priority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Priority" sap:value-list="standard"/>
-                <Property Name="LocationTechnicalObject" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location"/>
-                <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Maintenance plant"/>
-                <Property Name="DeclarationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Notification date"/>
-                <Property Name="DeclarationTime" Type="Edm.Time" Precision="0" sap:label="Notification Time"/>
-                <Property Name="Declarant" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Reported by" sap:value-list="standard"/>
-                <Property Name="Assigned" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Partner" sap:value-list="standard"/>
-                <NavigationProperty Name="to_assigned" Relationship="ZPM_MAINTENANCE_SRV.assoc_9C9165E8E0131F2F3D97F34848D240B2" FromRole="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2" ToRole="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
-                <NavigationProperty Name="to_dmg_pattern" Relationship="ZPM_MAINTENANCE_SRV.assoc_40F5DE3358142A9A7286072C2B5D8B6C" FromRole="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C" ToRole="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
-                <NavigationProperty Name="to_priok" Relationship="ZPM_MAINTENANCE_SRV.assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" FromRole="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" ToRole="ToRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
-                <NavigationProperty Name="to_techobj" Relationship="ZPM_MAINTENANCE_SRV.assoc_98EF3FDD9461EDD06019376E9DA86B05" FromRole="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05" ToRole="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
-                <NavigationProperty Name="to_user" Relationship="ZPM_MAINTENANCE_SRV.assoc_9DC529D6D006B8FE6D3C6C19B39E778E" FromRole="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E" ToRole="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
-            </EntityType>
             <EntityType Name="ZD4P_C_PM_PRIOK_VHType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Impact"/>
@@ -54,6 +29,8 @@
                     <PropertyRef Name="TechnicalObject"/>
                     <PropertyRef Name="TechObjIsEquipOrFuncnlLoc"/>
                 </Key>
+                <Property Name="TechnicalObject" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object"/>
+                <Property Name="TechObjIsEquipOrFuncnlLoc" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Tech. Obj. Type"/>
                 <Property Name="ABCIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ABC indicator"/>
                 <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="AuthorizGroup"/>
                 <Property Name="BusinessArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Business Area"/>
@@ -82,8 +59,6 @@
                 <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On"/>
                 <Property Name="Division" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Division"/>
                 <Property Name="AssetLocation" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location"/>
-                <Property Name="TechnicalObject" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object"/>
-                <Property Name="TechObjIsEquipOrFuncnlLoc" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Tech. Obj. Type"/>
             </EntityType>
             <EntityType Name="ZD4P_C_PM_USER_VHType" sap:content-version="1">
                 <Key>
@@ -94,20 +69,63 @@
                 <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:label="Last name"/>
                 <Property Name="FullName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
             </EntityType>
+            <EntityType Name="Z4DP_C_PM_DOCType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DocumentId"/>
+                </Key>
+                <Property Name="DocumentId" Type="Edm.Guid" Nullable="false" sap:display-format="UpperCase" sap:label="UUID"/>
+                <Property Name="DocumentName" Type="Edm.String" MaxLength="256" sap:display-format="UpperCase" sap:label="char256"/>
+                <Property Name="CreationUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="CreationTime" Type="Edm.DateTimeOffset" Precision="0" sap:label="Time Stamp"/>
+                <Property Name="XStringVal" Type="Edm.Binary" sap:label="Binary String"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Character 100"/>
+                <Property Name="DelFlag" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Checkbox"/>
+            </EntityType>
             <EntityType Name="ZD4P_C_PM_ASSIGN_VHType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="PersonnelNumber"/>
                 </Key>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
+                <Property Name="CompanyShortText" Type="Edm.String" MaxLength="25" sap:label="Org.Unit Short Text"/>
                 <Property Name="PersonnelNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Personnel number"/>
                 <Property Name="LastName" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Last name"/>
                 <Property Name="FirstName" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="First name"/>
                 <Property Name="FullName" Type="Edm.String" MaxLength="80" sap:label="Full Name"/>
-                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
-                <Property Name="CompanyShortText" Type="Edm.String" MaxLength="25" sap:label="Org.Unit Short Text"/>
+            </EntityType>
+            <EntityType Name="ZD4P_C_PM_NOTIFType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UUID"/>
+                    <PropertyRef Name="TechnicalObject"/>
+                </Key>
+                <Property Name="UUID" Type="Edm.Guid" Nullable="false" sap:label="UUID"/>
+                <Property Name="TechnicalObject" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object" sap:value-list="standard"/>
+                <Property Name="ShortText" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="72" sap:label="Text Line"/>
+                <Property Name="CodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Problem"/>
+                <Property Name="Code" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Damage Code" sap:value-list="standard"/>
+                <Property Name="Damage" Type="Edm.String" MaxLength="40" sap:label="Short text for code"/>
+                <Property Name="Priority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Priority" sap:value-list="standard"/>
+                <Property Name="LocationTechnicalObject" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location"/>
+                <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Maintenance plant"/>
+                <Property Name="DeclarationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Notification date"/>
+                <Property Name="DeclarationTime" Type="Edm.Time" Precision="0" sap:label="Notification Time"/>
+                <Property Name="Declarant" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Reported by" sap:value-list="standard"/>
+                <Property Name="Assigned" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Partner" sap:value-list="standard"/>
+                <Property Name="TechObjNr" Type="Edm.String" MaxLength="32" sap:display-format="UpperCase"/>
+                <NavigationProperty Name="to_assigned" Relationship="ZPM_MAINTENANCE_SRV.assoc_9C9165E8E0131F2F3D97F34848D240B2" FromRole="FromRole_assoc_9C9165E8E0131F2F3D97F34848D240B2" ToRole="ToRole_assoc_9C9165E8E0131F2F3D97F34848D240B2"/>
+                <NavigationProperty Name="to_dmg_pattern" Relationship="ZPM_MAINTENANCE_SRV.assoc_40F5DE3358142A9A7286072C2B5D8B6C" FromRole="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C" ToRole="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
+                <NavigationProperty Name="to_documents" Relationship="ZPM_MAINTENANCE_SRV.assoc_E508FC3EE7DF6B9C046EA17FF3498B5B" FromRole="FromRole_assoc_E508FC3EE7DF6B9C046EA17FF3498B5B" ToRole="ToRole_assoc_E508FC3EE7DF6B9C046EA17FF3498B5B"/>
+                <NavigationProperty Name="to_priok" Relationship="ZPM_MAINTENANCE_SRV.assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" FromRole="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" ToRole="ToRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
+                <NavigationProperty Name="to_techobj" Relationship="ZPM_MAINTENANCE_SRV.assoc_98EF3FDD9461EDD06019376E9DA86B05" FromRole="FromRole_assoc_98EF3FDD9461EDD06019376E9DA86B05" ToRole="ToRole_assoc_98EF3FDD9461EDD06019376E9DA86B05"/>
+                <NavigationProperty Name="to_user" Relationship="ZPM_MAINTENANCE_SRV.assoc_9DC529D6D006B8FE6D3C6C19B39E778E" FromRole="FromRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E" ToRole="ToRole_assoc_9DC529D6D006B8FE6D3C6C19B39E778E"/>
             </EntityType>
             <Association Name="assoc_40F5DE3358142A9A7286072C2B5D8B6C" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
                 <End Type="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DMG_PATTERN_VHType" Multiplicity="0..1" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
+            </Association>
+            <Association Name="assoc_E508FC3EE7DF6B9C046EA17FF3498B5B" sap:content-version="1">
+                <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_E508FC3EE7DF6B9C046EA17FF3498B5B"/>
+                <End Type="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DOCType" Multiplicity="*" Role="ToRole_assoc_E508FC3EE7DF6B9C046EA17FF3498B5B"/>
             </Association>
             <Association Name="assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" sap:content-version="1">
                 <End Type="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" Multiplicity="1" Role="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
@@ -127,11 +145,12 @@
             </Association>
             <EntityContainer Name="ZPM_MAINTENANCE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="Z4DP_C_PM_DMG_PATTERN_VH" EntityType="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DMG_PATTERN_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
-                <EntitySet Name="ZD4P_C_PM_NOTIF" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_PRIOK_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_PRIOK_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_TECH_OBJ_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_TECH_OBJ_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_USER_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_USER_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="Z4DP_C_PM_DOC" EntityType="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DOCType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
                 <EntitySet Name="ZD4P_C_PM_ASSIGN_VH" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZD4P_C_PM_NOTIF" EntityType="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
                 <AssociationSet Name="assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" Association="ZPM_MAINTENANCE_SRV.assoc_A9C1E526D45181AEE1A43DC3B4DD1D04" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
                     <End EntitySet="ZD4P_C_PM_PRIOK_VH" Role="ToRole_assoc_A9C1E526D45181AEE1A43DC3B4DD1D04"/>
@@ -152,6 +171,10 @@
                     <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
                     <End EntitySet="Z4DP_C_PM_DMG_PATTERN_VH" Role="ToRole_assoc_40F5DE3358142A9A7286072C2B5D8B6C"/>
                 </AssociationSet>
+                <AssociationSet Name="assoc_E508FC3EE7DF6B9C046EA17FF3498B5B" Association="ZPM_MAINTENANCE_SRV.assoc_E508FC3EE7DF6B9C046EA17FF3498B5B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZD4P_C_PM_NOTIF" Role="FromRole_assoc_E508FC3EE7DF6B9C046EA17FF3498B5B"/>
+                    <End EntitySet="Z4DP_C_PM_DOC" Role="ToRole_assoc_E508FC3EE7DF6B9C046EA17FF3498B5B"/>
+                </AssociationSet>
             </EntityContainer>
             <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_NOTIFType/TechnicalObject" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Common.ValueList">
@@ -164,6 +187,9 @@
                                 <Record Type="Common.ValueListParameterInOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="TechnicalObject"/>
                                     <PropertyValue Property="ValueListProperty" String="TechnicalObject"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="TechObjIsEquipOrFuncnlLoc"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="ABCIndicator"/>
@@ -248,9 +274,6 @@
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="AssetLocation"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="TechObjIsEquipOrFuncnlLoc"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -346,6 +369,12 @@
                                     <PropertyValue Property="ValueListProperty" String="PersonnelNumber"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CompanyShortText"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="LastName"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
@@ -353,12 +382,6 @@
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="FullName"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="CompanyShortText"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>

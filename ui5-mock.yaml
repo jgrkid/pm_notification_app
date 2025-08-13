@@ -36,13 +36,9 @@ server:
         mountPath: /
         services:
           - urlPath: /sap/opu/odata/sap/ZPM_MAINTENANCE_SRV
-            generateMockData: true
-            metadataXmlPath: ./webapp/localService/metadata.xml
-            mockdataRootPath: ./webapp/localService/data
-          - urlPath: /sap/opu/odata/sap/ZPM_MAINTENANCE_SRV/
-            metadataPath: ./webapp/localService/metadata.xml
-            mockdataPath: ./webapp/localService/mockdata
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/data
             generateMockData: true
         annotations:
-          - localPath: ./webapp/localService/ZPM_MAINTENANCE_ANNO_MDL.xml
+          - localPath: ./webapp/localService/mainService/ZPM_MAINTENANCE_ANNO_MDL.xml
             urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPM_MAINTENANCE_ANNO_MDL',Version='0001')/$value/
