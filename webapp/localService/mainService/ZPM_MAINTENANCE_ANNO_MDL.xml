@@ -18,24 +18,43 @@
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
                 <Annotation Term="UI.Hidden"/>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType/">
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_DOCType/DocumentId">
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
                 <Annotation Term="UI.Hidden"/>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType">
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_DOCType/NotificationId">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_DOCType/XStringVal">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_DOCType/MimeType">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_DOCType">
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DocumentId"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="PersonnelNumber"/>
+                            <PropertyValue Property="Label" String="Dokumentname"/>
+                            <PropertyValue Property="Value" Path="DocumentName"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="LastName"/>
+                            <PropertyValue Property="Label" String="Benutzer"/>
+                            <PropertyValue Property="Value" Path="CreationUser"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="FirstName"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="FullName"/>
+                            <PropertyValue Property="Label" String="Uploadzeit"/>
+                            <PropertyValue Property="Value" Path="CreationTime"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -88,39 +107,24 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DOCType/DocumentId">
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType/">
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
                 <Annotation Term="UI.Hidden"/>
             </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DOCType/XStringVal">
-                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
-                <Annotation Term="UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DOCType/MimeType">
-                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
-                <Annotation Term="UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="ZPM_MAINTENANCE_SRV.Z4DP_C_PM_DOCType">
-                <Annotation Term="UI.Identification">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="DocumentId"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
+            <Annotations Target="ZPM_MAINTENANCE_SRV.ZD4P_C_PM_ASSIGN_VHType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="Dokumentname"/>
-                            <PropertyValue Property="Value" Path="DocumentName"/>
+                            <PropertyValue Property="Value" Path="PersonnelNumber"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="Benutzer"/>
-                            <PropertyValue Property="Value" Path="CreationUser"/>
+                            <PropertyValue Property="Value" Path="LastName"/>
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Label" String="Uploadzeit"/>
-                            <PropertyValue Property="Value" Path="CreationTime"/>
+                            <PropertyValue Property="Value" Path="FirstName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FullName"/>
                         </Record>
                     </Collection>
                 </Annotation>

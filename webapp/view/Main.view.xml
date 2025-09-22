@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:unified="sap.ui.unified"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc" 
@@ -47,17 +47,17 @@
                     </smartForm:layout>
                     <smartForm:Group id="_IDGenGroup" >
                         <smartForm:GroupElement id="_IDElTechOb" label="{i18n>labelTechObj}">
-                            <smartField:SmartField id="_IDTechOb" value="{TechnicalObject}" placeholder="{i18n>phTObj}" />
+                            <smartField:SmartField id="_IDTechOb" value="{FormModel>TechnicalObject}" placeholder="{i18n>phTObj}" />
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEShortText" label="{i18n>labelShortT}">
-                            <smartField:SmartField id="_IDShortText" value="{ShortText}" placeholder="{i18n>phShortT}" mandatory="true"/>
+                            <smartField:SmartField id="_IDShortText" value="{FormModel>ShortText}" placeholder="{i18n>phShortT}" mandatory="true"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDesc" label="{i18n>labelDesc}">
-                            <smartField:SmartField id="_IDDesc" value="{Description}" wrapping="true" app:multiLineSettings="{rows: 3}" width="100%"
+                            <smartField:SmartField id="_IDDesc" value="{FormModel>Description}" wrapping="true" app:multiLineSettings="{rows: 3}" width="100%"
                                                    placeholder="{i18n>phDesc}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDamage">
-                            <smartField:SmartField id="_IDDamage" textLabel="{i18n>labelDamage}" value="{Code}">
+                            <smartField:SmartField id="_IDDamage" textLabel="{i18n>labelDamage}" value="{FormModel>Code}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDamageConfig" controlType="dropDownList"
                                                               displayBehaviour="descriptionAndId"/>
@@ -65,7 +65,7 @@
                             </smartField:SmartField>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEPriority" >
-                            <smartField:SmartField id="_IDPriority" textLabel="{i18n>labelPrio}" value="{Priority}">
+                            <smartField:SmartField id="_IDPriority" textLabel="{i18n>labelPrio}" value="{FormModel>Priority}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDPrioConfig" controlType="dropDownList"
                                                                   displayBehaviour="descriptionAndId" />
@@ -73,25 +73,25 @@
                             </smartField:SmartField>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDELocTechOb" label="{i18n>labelLocTechOb}">
-                            <smartField:SmartField id="_IDLocTechOb" value="{LocationTechnicalObject}" placeholder="{i18n>phTechOb}"/>
+                            <smartField:SmartField id="_IDLocTechOb" value="{FormModel>LocationTechnicalObject}" placeholder="{i18n>phTechOb}"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDeclared"  app:singleGroupFullSize="true" elementForLabel="0">
-                            <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{DeclarationDate}">
+                            <smartField:SmartField id="_IDDeclareDate" textLabel="{i18n>labelDeclared}" value="{FormModel>DeclarationDate}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDeclaredDateConfig" controlType="datePicker"/>
                                 </smartField:configuration>
                             </smartField:SmartField>
-                            <smartField:SmartField id="_IDDeclareTime" value="{DeclarationTime}">
+                            <smartField:SmartField id="_IDDeclareTime" value="{FormModel>DeclarationTime}">
                                 <smartField:configuration>
                                     <smartField:Configuration id="_IDDeclaredTimeConfig" controlType="auto" />
                                 </smartField:configuration>
                             </smartField:SmartField>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEDeclarant" label="{i18n>labelDeclarant}">
-                            <smartField:SmartField id="_IDDeclarant" value="{Declarant}" mandatory="true"/>
+                            <smartField:SmartField id="_IDDeclarant" value="{FormModel>Declarant}" mandatory="true"/>
                         </smartForm:GroupElement>
                         <smartForm:GroupElement id="_IDEAssignedTo" label="{i18n>labelAssignedTo}">
-                            <smartField:SmartField id="_IDAssignedTo"  value="{Assigned}"/>
+                            <smartField:SmartField id="_IDAssignedTo"  value="{FormModel>Assigned}"/>
                         </smartForm:GroupElement>
                     </smartForm:Group>      
                 </smartForm:SmartForm>
@@ -101,7 +101,7 @@
             <FlexBox id="_IDSpacer"><Label id="_IDSpacerLabel"></Label></FlexBox> 
         
             <!-- Attachments -->
-            <Panel id="_IDAttachments">
+            <!-- <Panel id="_IDAttachments">
                 <upload:UploadSet
                         id="UploadSet"
                         instantUpload="true"
@@ -117,16 +117,6 @@
                         items="{path: 'items', templateShareable: false}"
                         visible="true"
 				        afterItemAdded="onUploadFileChange">
-                    <!-- <upload:toolbar>
-                        <OverflowToolbar id="_IDOVT" class="sapFDynamicPageAlignContent"> 
-				            <Title id="attachmentTitle" level="Auto" text="{i18n>labelAttachment}"/>
-                            <ToolbarSpacer id="_IDToolbarSpacer"/>
-                            <Button
-                                id="UploadSelectedButton"
-							    icon="sap-icon://upload"
-							    press="onUploadSelectedButton"/>
-                        </OverflowToolbar>
-                    </upload:toolbar> -->
                     <upload:items>
                         <upload:UploadSetItem id="_IDGenUploadSetItem1"
                                 fileName="{fileName}"
@@ -152,8 +142,54 @@
                         </upload:UploadSetItem>
                     </upload:items>
                 </upload:UploadSet>
-            </Panel>
+                <VBox id="_IDGenVBox">
+                    <unified:FileUploader id="_IDGenFileUploader" 
+                       change="onUploadChange">
+                    </unified:FileUploader>
+                </VBox>
+            </Panel> -->
+            <Panel id="_IDGenPanel" >
+                 <VBox id="_IDGenVBox">
+                    <unified:FileUploader id="_IDGenFileUploader" 
+                        change="onUploadChange"
+                        multiple="true"
+                        placeholder="Datei hochladen"
+                        uploadOnChange="false"
+                        useMultipart="true"
+                        name="uploadFile"
+                        fileType="png,jpg"
+                       >
+                    </unified:FileUploader>
+                    
+                    <Table
+                        id="uploadedFilesTable"
+                        headerText="Hochgeladene Dateien"
+                        items="{uploadModel>/uploadedFiles}">
 
+                        <columns>
+                            <Column id="_IDGenColumn1">
+                                <Label id="_IDGenLabel" text="Dateiname" />
+                            </Column>
+                            <Column id="_IDGenColumn2">
+                                <Label id="_IDGenLabel1" text="Größe (KB)" />
+                            </Column>
+                            <Column id="_IDGenColumn">
+                                <Label id="_IDGenLabel2" text="Datei entfernen" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem id="_IDGenColumnListItem">
+                                <cells>
+                                    <Text id="_IDGenText" text="{uploadModel>name}" />
+                                    <Text id="_IDGenText1" text="{uploadModel>size}" />
+                                    <Button id="_IDGenButton" icon="sap-icon://decline" press="onFileRemove" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </VBox>
+            </Panel>
         </content>
         
         <!-- Floating footer -->
