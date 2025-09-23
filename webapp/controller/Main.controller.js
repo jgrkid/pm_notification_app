@@ -31,14 +31,7 @@ sap.ui.define([
                 this.oRouter.getRoute("RouteMain").attachPatternMatched(this.onRouteMatched, this);
 
                 // //Init Uploader
-                // var oUploadSet = that.byId("UploadSet")
                 oDocuments = [];
-
-                // Modify "add file" button
-                // oUploadSet.getDefaultFileUploader().setButtonOnly(false)
-                // oUploadSet.getDefaultFileUploader().setTooltip("")
-                // oUploadSet.getDefaultFileUploader().setIconOnly(true)
-                // oUploadSet.getDefaultFileUploader().setIcon("sap-icon://attachment")
 
                 //Init Barcode Scanner
                 prefixId = that.createId();
@@ -54,19 +47,6 @@ sap.ui.define([
 
 
             onRouteMatched: function (oEvent) {
-                debugger;
-                var FormModel = new sap.ui.model.json.JSONModel({
-                    TechnicalObject: "",
-                    ShortText: "",
-                    Description: "",
-                    Code: "",
-                    Priority: "",
-                    LocationTechnicalObject: "",
-                    DeclarationDate: "",
-                    DeclarationTime: "",
-
-                });
-                this.getView().setModel(FormModel, "FormModel");
                 var FormModel = this.getView().getModel()
                 var that = this
 
@@ -93,7 +73,7 @@ sap.ui.define([
                 //wait for metadata
                 FormModel.metadataLoaded(true).then(
                     function () {
-                          var oContext = oModel.createEntry("/ZD4P_C_PM_NOTIF", {
+                          var oContext = FormModel.createEntry("/ZD4P_C_PM_NOTIF", {
                             properties: {
                                 DeclarationDate: new Date(),
                                 DeclarationTime: { "ms": today, "__edmType": "Edm.Time" },
