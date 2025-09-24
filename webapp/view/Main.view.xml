@@ -106,28 +106,28 @@
                     <unified:FileUploader id="_IDGenFileUploader" 
                         change="onUploadChange"
                         multiple="true"
-                        placeholder="Datei hochladen"
+                        placeholder="{i18n>fileupload}"
                         uploadOnChange="false"
                         useMultipart="true"
                         name="uploadFile"
                         fileType="png,jpg"
-                       >
+                       > 
                     </unified:FileUploader>
                     
                     <Table
                         id="uploadedFilesTable"
-                        headerText="Hochgeladene Dateien"
+                        headerText="{i18n>filesuploaded}"
                         items="{uploadModel>/uploadedFiles}">
 
                         <columns>
                             <Column id="_IDGenColumn1">
-                                <Label id="_IDGenLabel" text="Dateiname" />
+                                <Label id="_IDGenLabel" text="{i18n>filename}" />
                             </Column>
                             <Column id="_IDGenColumn2">
-                                <Label id="_IDGenLabel1" text="Größe (KB)" />
+                                <Label id="_IDGenLabel1" text="{i18n>filesize}" />
                             </Column>
                             <Column id="_IDGenColumn">
-                                <Label id="_IDGenLabel2" text="Datei entfernen" />
+                                <Label id="_IDGenLabel2" text="{i18n>fileremove}" />
                             </Column>
                         </columns>
 

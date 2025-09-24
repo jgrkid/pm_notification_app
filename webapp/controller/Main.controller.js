@@ -19,7 +19,8 @@ sap.ui.define([
         var doc_type;
         var aProcessedFiles = [];
         const aFileParams = [];
-        
+        var oDataRes;
+
         return Controller.extend("pmnotificationapp.controller.Main", {
             onInit: function () {
 
@@ -73,7 +74,7 @@ sap.ui.define([
                 //wait for metadata
                 FormModel.metadataLoaded(true).then(
                     function () {
-                          var oContext = FormModel.createEntry("/ZD4P_C_PM_NOTIF", {
+                        var oContext = FormModel.createEntry("/ZD4P_C_PM_NOTIF", {
                             properties: {
                                 DeclarationDate: new Date(),
                                 DeclarationTime: { "ms": today, "__edmType": "Edm.Time" },
@@ -84,64 +85,69 @@ sap.ui.define([
                         that.byId("smartForm").setBindingContext(oContext)
                     })
             },
-
             onSave: function (oEvent) {
-                debugger;
                 var oModel = this.getView().getModel();
+                var sDocIdsString = "";
+                var aDocIds = [];
 
 
-                for (let index = 0; index < aProcessedFiles.length; index++) {
-                    // base64 = aProcessedFiles[index].content;
-                    // doc_name = aProcessedFiles[index].name;
-                    // doc_type = aProcessedFiles[index].type;
+                /*create operation*/
+                var that = this;
+                async function create_entity(that) {
 
-                    oModel.callFunction("/UploadFiles", {
-                        method: "POST",
-                        urlParameters: {
-                            iv_base64: aFileParams[index].base64,
-                            iv_doc_name: aFileParams[index].name,
-                            iv_doc_type: aFileParams[index].type,
-                        },
+                    var oSmartForm = that.byId("smartForm");
+                    oDataRes = oSmartForm.getBindingContext().getObject();
+
+                    //  Send OData-Request to CREATE-Entity
+                    var sUuid;
+                    const response = await oModel.create("/ZD4P_C_PM_NOTIF", oDataRes, {
                         success: function (oData) {
-                            debugger;
-                            console.log("Archiv-ID:", oData.archive_id); 
-                            console.log("Dokumenttyp:", oData.DocType);
+                            sUuid = oData.UUID;
+                            UploadFiles(sUuid)
                         },
-                        error: function (oData) {
-                            sap.m.MessageBox.error("Fehler beim Datei-Upload");
-                        }
-                    });
+                    }
+                    );
+                }
+                
+                create_entity(that);
+                
 
+                function UploadFiles(isUuid) {
+
+                    var ssuccess = that.getView().getModel("i18n").getResourceBundle().getText("msgboxsuccess");
+                    var sfailure = that.getView().getModel("i18n").getResourceBundle().getText("msgboxfailure");
+                    var smsgarchivedoc = that.getView().getModel("i18n").getResourceBundle().getText("msgarchivedoc");
+                    for (let index = 0; index < aProcessedFiles.length; index++) {
+
+                        oModel.callFunction("/UploadFiles", {
+                            method: "POST",
+                            urlParameters: {
+                                iv_base64: aFileParams[index].base64,
+                                iv_doc_name: aFileParams[index].name,
+                                iv_doc_type: aFileParams[index].type,
+                                iv_uuid_key: isUuid,
+                            },
+                            success: function (oData) {
+                                aDocIds[index] = oData.UploadFiles.ArchiveId;
+
+                                if (aDocIds.length == aProcessedFiles.length) {
+                                    for (let i = 0; i < aDocIds.length; i++) {
+                                        sDocIdsString = sDocIdsString + "\n" + aDocIds[i]
+                                    }
+                                    sap.m.MessageBox.success(ssuccess + "\n" +
+                                        smsgarchivedoc + " " + sDocIdsString
+                                    ); 
+                                }
+
+
+                            },
+                            error: function (oData) {
+                                sap.m.MessageBox.error(sfailure);
+                            }
+                        });
+                    }
                 }
 
-
-                //TEST FUNCTION CALL
-
-                //altes coding
-                /*create operation*/
-                // var oSmartForm = this.byId("smartForm");
-                var oModel = this.getView().getModel();
-                // var oDataRes = oSmartForm.getBindingContext().getObject();
-
-                // Messages
-                debugger;
-
-
-                var ssuccess = this.getView().getModel("i18n").getResourceBundle().getText("msgboxsuccess");
-                var sfailure = this.getView().getModel("i18n").getResourceBundle().getText("msgboxfailure");
-
-                //  Send OData-Request to CREATE-Entity
-                // oModel.create("/ZD4P_C_PM_NOTIF", oDataRes, {
-                // oModel.create("/ZD4P_C_PM_NOTIF", base64, {
-                oModel.create("/ZD4P_C_PM_NOTIF", {
-                    success: function () {
-                        sap.m.MessageBox.success(ssuccess);
-                    },
-                    error: function (oError) {
-                        sap.m.MessageBox.error(sfailure);
-                    }
-                });
-                //altes coding
 
             },
             onScanSuccess: function (oEvent) {
@@ -208,8 +214,8 @@ sap.ui.define([
                 if (!this._aUploadedFiles) {
                     this._aUploadedFiles = [];
                 }
-                
-                debugger;
+
+
                 // Hilfsfunktion zum Lesen als Base64
                 const readFileAsBase64 = function (file) {
                     return new Promise((resolve, reject) => {
@@ -217,7 +223,7 @@ sap.ui.define([
                         reader.onload = () => {
                             const result = reader.result;
                             var index = aFileParams.length;
-                            debugger;
+
                             if (!aFileParams[index]) aFileParams[index] = {};
                             aFileParams[index].base64 = result.split(",")[1]; // Nur Base64 extrahieren
                             aFileParams[index].name = file.name;
@@ -230,18 +236,14 @@ sap.ui.define([
 
                         // //ungültige Formate abfangen
                         // if (file.type !== "image/png" ) {
-                        //     debugger;
+
                         // }
 
                     });
                 };
 
-                debugger;
                 // Alle Dateien verarbeiten
-
                 for (let file of aFiles) {
-                    debugger;
-
 
                     aProcessedFiles.push({
                         name: file.name,
@@ -266,7 +268,6 @@ sap.ui.define([
             },
 
             onFileRemove: function (oEvent) {
-                debugger;
                 var oItem = oEvent.getSource().getParent(); // ColumnListItem
                 var oContext = oItem.getBindingContext("uploadModel");
                 var sPath = oContext.getPath(); // z. B. "/uploadedFiles/2"
@@ -301,7 +302,6 @@ sap.ui.define([
 
 
             // onUploadChange: function (oEvent) {
-            //     debugger;
             //     var oFile = oEvent.getParameter("files")[0];
 
             //     var reader = new FileReader();
