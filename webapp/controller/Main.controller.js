@@ -102,15 +102,25 @@ sap.ui.define([
                     var sUuid;
                     const response = await oModel.create("/ZD4P_C_PM_NOTIF", oDataRes, {
                         success: function (oData) {
+                            debugger;
                             sUuid = oData.UUID;
+                            let sNotifId = oData.NotifNum;
                             UploadFiles(sUuid)
+                            debugger;
+                            if (aProcessedFiles.length == 0) {
+
+                                let notif_created = that.getView().getModel("i18n").getResourceBundle().getText("notif_created");
+                                let notif_no = that.getView().getModel("i18n").getResourceBundle().getText("notif_no");  
+                                let doc_id = that.getView().getModel("i18n").getResourceBundle().getText("doc_id");                                 
+                                sap.m.MessageBox.success(notif_created + "\n" + notif_no + "\n " + sNotifId + "\n" + doc_id + "\n " + sUuid)
+                            }
                         },
                     }
                     );
                 }
-                
+
                 create_entity(that);
-                
+
 
                 function UploadFiles(isUuid) {
 
@@ -136,10 +146,8 @@ sap.ui.define([
                                     }
                                     sap.m.MessageBox.success(ssuccess + "\n" +
                                         smsgarchivedoc + " " + sDocIdsString
-                                    ); 
+                                    );
                                 }
-
-
                             },
                             error: function (oData) {
                                 sap.m.MessageBox.error(sfailure);
@@ -205,6 +213,8 @@ sap.ui.define([
 
             onUploadChange: async function (oEvent) {
 
+                // let sCancel = oEvent.getParameter("newValue");
+
                 //Data Table for Fileupload
                 var uploadModel = new sap.ui.model.json.JSONModel({ uploadedFiles: [] });
                 this.getView().setModel(uploadModel, "uploadModel");
@@ -254,17 +264,15 @@ sap.ui.define([
                     doc_name = file.name;
                     doc_type = file.type;
 
-                    var oModel = this.getView().getModel("uploadModel");
-
-                    oModel.setProperty("/uploadedFiles", aProcessedFiles);
-
                     this._aUploadedFiles.unshift({
                         name: file.name,
                         type: file.type,
                         content: base64
                     });
                 }
+                var oModel = this.getView().getModel("uploadModel");
 
+                oModel.setProperty("/uploadedFiles", aProcessedFiles);
             },
 
             onFileRemove: function (oEvent) {
